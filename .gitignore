@@ -1,4 +1,6 @@
+# ----------------------------
 # Python
+# ----------------------------
 __pycache__/
 *.py[cod]
 *$py.class
@@ -11,62 +13,65 @@ ENV/
 dist/
 build/
 
+# ----------------------------
 # Jupyter
+# ----------------------------
 .ipynb_checkpoints/
 
+# ----------------------------
 # Environment
+# ----------------------------
 .env
+.env.*
 .env.local
 
+# ----------------------------
 # Data (trop volumineux)
-data/bronze/*.parquet
-data/silver/*.parquet
-data/models/*.pkl
-data/models/*.joblib
-*.csv
+# ----------------------------
+# Datasets / Spark / parquet
+data/
+ml/Data/
 
+# Modèles
+*.pkl
+*.joblib
+
+# CSV lourds
+data/**/*.csv
+
+# ----------------------------
 # Airflow
-airflow/logs/*
+# ----------------------------
+airflow/logs/
 airflow/airflow.db
 airflow/airflow-webserver.pid
-logs/
 
-
-
-
-
+# ----------------------------
 # Database
+# ----------------------------
 *.db
 
-
+# ----------------------------
 # IDE
+# ----------------------------
 .vscode/
 .idea/
 *.swp
 .DS_Store
+
+# ----------------------------
+# Editor history
+# ----------------------------
 .history/
 
+# ----------------------------
 # Docker
+# ----------------------------
 *.log
 
+# ----------------------------
 # Tests
+# ----------------------------
 .coverage
 htmlcov/
 .pytest_cache/
-
-
-# Environnement
-.env
-.env.*
-
-# Historique éditeur
-.history/
-
-# Données ML / Spark
-ml/Data/
-*.parquet
-*.crc
-_SUCCESS
-
-# Notebooks temporaires
-.ipynb_checkpoints/
