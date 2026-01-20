@@ -53,3 +53,20 @@ logs/
 .coverage
 htmlcov/
 .pytest_cache/
+
+
+# Environnement
+.env
+.env.*
+
+# Historique éditeur
+.history/
+
+# Données ML / Spark
+ml/Data/
+*.parquet
+*.crc
+_SUCCESS
+
+# Notebooks temporaires
+.ipynb_checkpoints/
