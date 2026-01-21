@@ -5,6 +5,14 @@ dotenv
 
 matplotlib
 numpy
-xgboost
 tensorflow
 sparkxgb
+
+sqlalchemy
+python-dotenv
+fastapi
+uvicorn
+httpx
+pydantic
+pydantic-settings
+python-jose
