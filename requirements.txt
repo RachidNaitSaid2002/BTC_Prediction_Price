@@ -6,4 +6,5 @@ dotenv
 matplotlib
 numpy
 xgboost
+tensorflow
 sparkxgb
