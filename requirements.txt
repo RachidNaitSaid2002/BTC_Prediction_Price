@@ -20,3 +20,9 @@ argon2_cffi
 python-jose
 pytest
 requests
+
+matplotlib
+numpy
+xgboost
+tensorflow
+sparkxgb
