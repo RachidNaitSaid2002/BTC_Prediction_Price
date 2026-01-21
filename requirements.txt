@@ -2,3 +2,9 @@ pandas
 pyarrow
 pyspark
 dotenv
+
+matplotlib
+numpy
+xgboost
+tensorflow
+sparkxgb
