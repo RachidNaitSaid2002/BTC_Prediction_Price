@@ -19,5 +19,4 @@ passlib
 argon2_cffi
 python-jose
 pytest
-
-
+requests

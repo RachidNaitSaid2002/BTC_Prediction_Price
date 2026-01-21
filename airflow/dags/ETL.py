@@ -1,16 +1,50 @@
 from airflow.operators.python import PythonOperator
 from airflow import DAG
-from datetime import datetime
+from datetime import datetime, timedelta
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, mean, lead, lag, avg
 from pyspark.sql.window import Window
-
+import requests
+import pandas as pd
 
 DAG_ID = "ETL"
 
 def get_spark():
     spark = SparkSession.builder.appName("App").getOrCreate()
     return spark
+
+def data_collection_api(LIMIT, INTERVAL, SYMBOL):
+    response = requests.get(
+        url='https://api.binance.com/api/v3/klines',
+        params={
+            "symbol": SYMBOL,
+            "interval": INTERVAL,
+            "limit": LIMIT
+        }
+    )
+    
+    if response.status_code != 200:
+        print(f"Erreur {response.status_code}")
+        return None
+    
+    data = response.json()
+    
+    columns = [
+        "open_time", "open", "high", "low", "close", "volume",
+        "close_time", "quote_asset_volume", "number_of_trades",
+        "taker_buy_base_volume", "taker_buy_quote_volume", "ignore"
+    ]
+    
+    # Créer un DataFrame pandas
+    df = pd.DataFrame(data, columns=columns)
+    
+    numeric_cols = ["open", "high", "low", "close", "volume", "quote_asset_volume", "taker_buy_base_volume", "taker_buy_quote_volume"]
+    df[numeric_cols] = df[numeric_cols].astype(float)
+    
+    df["open_time"] = pd.to_datetime(df["open_time"], unit="ms")
+    df["close_time"] = pd.to_datetime(df["close_time"], unit="ms")
+    
+    return df
 
 def load_data():
     output_path = "/media/rachid/d70e3dc6-74e7-4c87-96bc-e4c3689c979a/lmobrmij/Projects/BTC_Prediction_Price/ml/Data/Normal/btc_minute_data.parquet"
@@ -102,6 +136,7 @@ def Save_Silver_Local(Data_B):
 
 # Extract :
 def Extract_Data():
+    df = data_collection_api(15, "1m", "BTCUSDT")
     df = load_data()
     Save_Bronze_Local(df)
 
@@ -123,14 +158,13 @@ def Transform_Data():
     df = CheckNull(df)
     Save_Silver_Local(df)
 
-    
 
 default_args = {
     'owner': 'airflow',
-    'start_date': datetime(2024, 1, 1),
+    'start_date': datetime(2026, 1, 21),
 }
 
-dag = DAG(DAG_ID, default_args=default_args, schedule_interval='@daily', catchup=False)
+dag = DAG(DAG_ID, default_args=default_args, schedule_interval=timedelta(minutes=15), catchup=False)
 
 task_Extract = PythonOperator(
     task_id='Extract_data',
