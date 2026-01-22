@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, Float, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 from db.db_connection import Base
-from datetime import datetime
 
 class BitcoinPrediction(Base):
     __tablename__ = "bitcoin_predictions"
@@ -20,5 +20,7 @@ class BitcoinPrediction(Base):
 
     # Prédiction
     predicted_price = Column(Float, nullable=False)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     
+    # Timestamp et user
+    timestamp = Column(DateTime(timezone=True), server_default=func.now())
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)

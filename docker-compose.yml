@@ -19,8 +19,8 @@ services:
 
   api:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .  # ← CHANGÉ: racine du projet au lieu de ./backend
+      dockerfile: ./backend/Dockerfile  # ← AJOUTÉ: chemin vers le Dockerfile
     container_name: api
     restart: always
     env_file:
@@ -33,6 +33,7 @@ services:
       JAVA_HOME: /usr/lib/jvm/java-21-openjdk-amd64
     volumes:
       - ./backend/app:/app
+      - ./ml:/app/ml
     depends_on:
       postgres:
         condition: service_healthy

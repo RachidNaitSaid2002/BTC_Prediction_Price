@@ -12,8 +12,8 @@ class Settings(BaseSettings):
     DB_USER: str 
     DB_PASSWORD: str 
     
-    # Optionnel: pour le modèle ML
-    MODEL_PATH: str = "././ml/Machine Learning/model/bitcoin_pipeline_model"
+    # Chemin correct pour le modèle dans le conteneur
+    MODEL_PATH: str = "/app/ml/Machine Learning/model/bitcoin_pipeline_model"
 
     model_config = {
         "extra": "ignore",

@@ -32,21 +32,25 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS bitcoin_predictions (
+-- Vérifier si la table existe et la supprimer
+DROP TABLE IF EXISTS bitcoin_predictions CASCADE;
+
+-- Recréer la table avec le bon schéma
+CREATE TABLE bitcoin_predictions (
     id SERIAL PRIMARY KEY,
+    
+    "MA_5" DOUBLE PRECISION NOT NULL,
+    high DOUBLE PRECISION NOT NULL,
+    low DOUBLE PRECISION NOT NULL,
+    open DOUBLE PRECISION NOT NULL,
+    close DOUBLE PRECISION NOT NULL,
+    "MA_10" DOUBLE PRECISION NOT NULL,
+    prev_close DOUBLE PRECISION NOT NULL,
+    return_val DOUBLE PRECISION NOT NULL,
+    predicted_price DOUBLE PRECISION NOT NULL,
 
-    ma_5 FLOAT NOT NULL,
-    high FLOAT NOT NULL,
-    low FLOAT NOT NULL,
-    open FLOAT NOT NULL,
-    close FLOAT NOT NULL,
-    ma_10 FLOAT NOT NULL,
-    prev_close FLOAT NOT NULL,
-    return_val FLOAT NOT NULL,
-    predicted_price FLOAT NOT NULL,
-
-    user_id INTEGER REFERENCES users(id)
-
+    timestamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    user_id INTEGER NOT NULL REFERENCES users(id)
 );
 
 -- Attribution des privilèges sur les tables

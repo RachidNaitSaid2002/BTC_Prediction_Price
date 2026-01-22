@@ -33,11 +33,3 @@ class PredictResponse(BaseModel):
     timestamp: datetime = Field(default_factory=datetime.now)
     prediction_id: Optional[int] = None
     
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "predicted_price": 45300.00,
-                "timestamp": "2024-01-01T12:00:00",
-                "prediction_id": 1
-            }
-        }

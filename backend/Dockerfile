@@ -15,10 +15,13 @@ ENV PATH=$JAVA_HOME/bin:$PATH
 WORKDIR /app
 
 # Copier et installer les dépendances
-COPY requirements.txt .
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copier le code de l'application
-COPY app/ .
+COPY backend/app/ .
+
+# Copier le modèle ML depuis la racine du projet
+COPY ml/ ./ml/
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
