@@ -100,6 +100,7 @@ def etl_taskflow():
         df_load.write.jdbc(url=jdbc_url, table="silver_data_test", mode="append", properties=connection_properties)
 
     bronze = extract()
+
     silver = transform(bronze)
     save_silver_postgres(silver)
 
