@@ -1,0 +1,100 @@
+[2026-01-21T11:15:14.656+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL.transform_data scheduled__2026-01-21T11:00:00+00:00 [queued]>
+[2026-01-21T11:15:14.667+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL.transform_data scheduled__2026-01-21T11:00:00+00:00 [queued]>
+[2026-01-21T11:15:14.668+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2026-01-21T11:15:14.690+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): transform_data> on 2026-01-21 11:00:00+00:00
+[2026-01-21T11:15:14.696+0000] {standard_task_runner.py:60} INFO - Started process 2919 to run task
+[2026-01-21T11:15:14.701+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ETL', 'transform_data', 'scheduled__2026-01-21T11:00:00+00:00', '--job-id', '18', '--raw', '--subdir', 'DAGS_FOLDER/ETL.py', '--cfg-path', '/tmp/tmp3h1fitot']
+[2026-01-21T11:15:14.704+0000] {standard_task_runner.py:88} INFO - Job 18: Subtask transform_data
+[2026-01-21T11:15:14.750+0000] {task_command.py:423} INFO - Running <TaskInstance: ETL.transform_data scheduled__2026-01-21T11:00:00+00:00 [running]> on host d6a8c67c486d
+[2026-01-21T11:15:14.835+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL' AIRFLOW_CTX_TASK_ID='transform_data' AIRFLOW_CTX_EXECUTION_DATE='2026-01-21T11:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-21T11:00:00+00:00'
+[2026-01-21T11:15:22.192+0000] {logging_mixin.py:188} INFO - open_time : you dont have any null values
+[2026-01-21T11:15:22.451+0000] {logging_mixin.py:188} INFO - open : you dont have any null values
+[2026-01-21T11:15:22.670+0000] {logging_mixin.py:188} INFO - high : you dont have any null values
+[2026-01-21T11:15:22.882+0000] {logging_mixin.py:188} INFO - low : you dont have any null values
+[2026-01-21T11:15:23.092+0000] {logging_mixin.py:188} INFO - close : you dont have any null values
+[2026-01-21T11:15:23.265+0000] {logging_mixin.py:188} INFO - volume : you dont have any null values
+[2026-01-21T11:15:23.443+0000] {logging_mixin.py:188} INFO - close_time : you dont have any null values
+[2026-01-21T11:15:23.570+0000] {logging_mixin.py:188} INFO - quote_asset_volume : you dont have any null values
+[2026-01-21T11:15:23.717+0000] {logging_mixin.py:188} INFO - number_of_trades : you dont have any null values
+[2026-01-21T11:15:23.861+0000] {logging_mixin.py:188} INFO - taker_buy_base_volume : you dont have any null values
+[2026-01-21T11:15:24.010+0000] {logging_mixin.py:188} INFO - taker_buy_quote_volume : you dont have any null values
+[2026-01-21T11:15:24.214+0000] {logging_mixin.py:188} INFO - ignore : you dont have any null values
+[2026-01-21T11:15:25.107+0000] {logging_mixin.py:188} INFO - you don't have any duplicated values !!
+[2026-01-21T11:15:25.422+0000] {logging_mixin.py:188} INFO - open_time : you dont have any null values
+[2026-01-21T11:15:25.544+0000] {logging_mixin.py:188} INFO - open : you dont have any null values
+[2026-01-21T11:15:25.661+0000] {logging_mixin.py:188} INFO - high : you dont have any null values
+[2026-01-21T11:15:25.777+0000] {logging_mixin.py:188} INFO - low : you dont have any null values
+[2026-01-21T11:15:25.900+0000] {logging_mixin.py:188} INFO - close : you dont have any null values
+[2026-01-21T11:15:26.026+0000] {logging_mixin.py:188} INFO - volume : you dont have any null values
+[2026-01-21T11:15:26.139+0000] {logging_mixin.py:188} INFO - close_time : you dont have any null values
+[2026-01-21T11:15:26.254+0000] {logging_mixin.py:188} INFO - quote_asset_volume : you dont have any null values
+[2026-01-21T11:15:26.348+0000] {logging_mixin.py:188} INFO - number_of_trades : you dont have any null values
+[2026-01-21T11:15:26.464+0000] {logging_mixin.py:188} INFO - taker_buy_base_volume : you dont have any null values
+[2026-01-21T11:15:26.559+0000] {logging_mixin.py:188} INFO - taker_buy_quote_volume : you dont have any null values
+[2026-01-21T11:15:26.894+0000] {logging_mixin.py:188} INFO - Column close_t_plus_10 has 10 null values (1.00%)
+[2026-01-21T11:15:27.343+0000] {logging_mixin.py:188} INFO - open_time : you dont have any null values
+[2026-01-21T11:15:27.538+0000] {logging_mixin.py:188} INFO - open : you dont have any null values
+[2026-01-21T11:15:27.688+0000] {logging_mixin.py:188} INFO - high : you dont have any null values
+[2026-01-21T11:15:27.811+0000] {logging_mixin.py:188} INFO - low : you dont have any null values
+[2026-01-21T11:15:27.965+0000] {logging_mixin.py:188} INFO - close : you dont have any null values
+[2026-01-21T11:15:28.120+0000] {logging_mixin.py:188} INFO - volume : you dont have any null values
+[2026-01-21T11:15:28.296+0000] {logging_mixin.py:188} INFO - close_time : you dont have any null values
+[2026-01-21T11:15:28.407+0000] {logging_mixin.py:188} INFO - quote_asset_volume : you dont have any null values
+[2026-01-21T11:15:28.532+0000] {logging_mixin.py:188} INFO - number_of_trades : you dont have any null values
+[2026-01-21T11:15:28.653+0000] {logging_mixin.py:188} INFO - taker_buy_base_volume : you dont have any null values
+[2026-01-21T11:15:28.784+0000] {logging_mixin.py:188} INFO - taker_buy_quote_volume : you dont have any null values
+[2026-01-21T11:15:28.913+0000] {logging_mixin.py:188} INFO - close_t_plus_10 : you dont have any null values
+[2026-01-21T11:15:29.100+0000] {logging_mixin.py:188} INFO - Column prev_close has 1 null values (0.10%)
+[2026-01-21T11:15:29.287+0000] {logging_mixin.py:188} INFO - return : you dont have any null values
+[2026-01-21T11:15:29.612+0000] {logging_mixin.py:188} INFO - open_time : you dont have any null values
+[2026-01-21T11:15:29.786+0000] {logging_mixin.py:188} INFO - open : you dont have any null values
+[2026-01-21T11:15:29.919+0000] {logging_mixin.py:188} INFO - high : you dont have any null values
+[2026-01-21T11:15:30.071+0000] {logging_mixin.py:188} INFO - low : you dont have any null values
+[2026-01-21T11:15:30.208+0000] {logging_mixin.py:188} INFO - close : you dont have any null values
+[2026-01-21T11:15:30.357+0000] {logging_mixin.py:188} INFO - volume : you dont have any null values
+[2026-01-21T11:15:30.502+0000] {logging_mixin.py:188} INFO - close_time : you dont have any null values
+[2026-01-21T11:15:30.643+0000] {logging_mixin.py:188} INFO - quote_asset_volume : you dont have any null values
+[2026-01-21T11:15:30.789+0000] {logging_mixin.py:188} INFO - number_of_trades : you dont have any null values
+[2026-01-21T11:15:30.943+0000] {logging_mixin.py:188} INFO - taker_buy_base_volume : you dont have any null values
+[2026-01-21T11:15:31.082+0000] {logging_mixin.py:188} INFO - taker_buy_quote_volume : you dont have any null values
+[2026-01-21T11:15:31.267+0000] {logging_mixin.py:188} INFO - close_t_plus_10 : you dont have any null values
+[2026-01-21T11:15:31.388+0000] {logging_mixin.py:188} INFO - prev_close : you dont have any null values
+[2026-01-21T11:15:31.514+0000] {logging_mixin.py:188} INFO - return : you dont have any null values
+[2026-01-21T11:15:31.733+0000] {logging_mixin.py:188} INFO - MA_5 : you dont have any null values
+[2026-01-21T11:15:31.990+0000] {logging_mixin.py:188} INFO - open_time : you dont have any null values
+[2026-01-21T11:15:32.106+0000] {logging_mixin.py:188} INFO - open : you dont have any null values
+[2026-01-21T11:15:32.213+0000] {logging_mixin.py:188} INFO - high : you dont have any null values
+[2026-01-21T11:15:32.330+0000] {logging_mixin.py:188} INFO - low : you dont have any null values
+[2026-01-21T11:15:32.439+0000] {logging_mixin.py:188} INFO - close : you dont have any null values
+[2026-01-21T11:15:32.544+0000] {logging_mixin.py:188} INFO - volume : you dont have any null values
+[2026-01-21T11:15:32.653+0000] {logging_mixin.py:188} INFO - close_time : you dont have any null values
+[2026-01-21T11:15:32.757+0000] {logging_mixin.py:188} INFO - quote_asset_volume : you dont have any null values
+[2026-01-21T11:15:32.862+0000] {logging_mixin.py:188} INFO - number_of_trades : you dont have any null values
+[2026-01-21T11:15:32.968+0000] {logging_mixin.py:188} INFO - taker_buy_base_volume : you dont have any null values
+[2026-01-21T11:15:33.078+0000] {logging_mixin.py:188} INFO - taker_buy_quote_volume : you dont have any null values
+[2026-01-21T11:15:33.183+0000] {logging_mixin.py:188} INFO - close_t_plus_10 : you dont have any null values
+[2026-01-21T11:15:33.283+0000] {logging_mixin.py:188} INFO - prev_close : you dont have any null values
+[2026-01-21T11:15:33.388+0000] {logging_mixin.py:188} INFO - return : you dont have any null values
+[2026-01-21T11:15:33.492+0000] {logging_mixin.py:188} INFO - MA_5 : you dont have any null values
+[2026-01-21T11:15:33.597+0000] {logging_mixin.py:188} INFO - MA_10 : you dont have any null values
+[2026-01-21T11:15:33.797+0000] {logging_mixin.py:188} INFO - open_time : you dont have any null values
+[2026-01-21T11:15:33.906+0000] {logging_mixin.py:188} INFO - open : you dont have any null values
+[2026-01-21T11:15:34.012+0000] {logging_mixin.py:188} INFO - high : you dont have any null values
+[2026-01-21T11:15:34.112+0000] {logging_mixin.py:188} INFO - low : you dont have any null values
+[2026-01-21T11:15:34.228+0000] {logging_mixin.py:188} INFO - close : you dont have any null values
+[2026-01-21T11:15:34.340+0000] {logging_mixin.py:188} INFO - volume : you dont have any null values
+[2026-01-21T11:15:34.454+0000] {logging_mixin.py:188} INFO - close_time : you dont have any null values
+[2026-01-21T11:15:34.553+0000] {logging_mixin.py:188} INFO - quote_asset_volume : you dont have any null values
+[2026-01-21T11:15:34.659+0000] {logging_mixin.py:188} INFO - number_of_trades : you dont have any null values
+[2026-01-21T11:15:34.764+0000] {logging_mixin.py:188} INFO - taker_buy_base_volume : you dont have any null values
+[2026-01-21T11:15:34.858+0000] {logging_mixin.py:188} INFO - taker_buy_quote_volume : you dont have any null values
+[2026-01-21T11:15:34.963+0000] {logging_mixin.py:188} INFO - close_t_plus_10 : you dont have any null values
+[2026-01-21T11:15:35.057+0000] {logging_mixin.py:188} INFO - prev_close : you dont have any null values
+[2026-01-21T11:15:35.141+0000] {logging_mixin.py:188} INFO - return : you dont have any null values
+[2026-01-21T11:15:35.256+0000] {logging_mixin.py:188} INFO - MA_5 : you dont have any null values
+[2026-01-21T11:15:35.365+0000] {logging_mixin.py:188} INFO - MA_10 : you dont have any null values
+[2026-01-21T11:15:35.493+0000] {logging_mixin.py:188} INFO - taker_ratio : you dont have any null values
+[2026-01-21T11:15:36.152+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-01-21T11:15:36.170+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ETL, task_id=transform_data, execution_date=20260121T110000, start_date=20260121T111514, end_date=20260121T111536
+[2026-01-21T11:15:36.209+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-21T11:15:36.227+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
