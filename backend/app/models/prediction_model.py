@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, Float, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
-from ..db.db_connection import Base
+from db.db_connection import Base
 from datetime import datetime
 
 class BitcoinPrediction(Base):

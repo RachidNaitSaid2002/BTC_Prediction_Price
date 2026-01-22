@@ -1,7 +1,7 @@
 from pyspark.ml import PipelineModel
 from pyspark.sql import SparkSession
-from ..core.config import settings
-from ..schemas.PredictionRequest_schema import PredictRequest
+from core.config import settings
+from schemas.PredictionRequest_schema import PredictRequest
 
 class PredictionService:
     def __init__(self, model_path: str = settings.MODEL_PATH):

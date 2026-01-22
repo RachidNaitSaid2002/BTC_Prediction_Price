@@ -1,11 +1,11 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 
-from backend.app.schemas.PredictionRequest_schema import PredictRequest, PredictResponse
-from backend.app.services.prediction_service import get_prediction_service
-from backend.app.models.prediction_model import BitcoinPrediction
-from backend.app.db.db_connection import get_db_session
-from backend.app.auth.token_auth import get_current_user
+from schemas.PredictionRequest_schema import PredictRequest, PredictResponse
+from services.prediction_service import get_prediction_service
+from models.prediction_model import BitcoinPrediction
+from db.db_connection import get_db_session
+from auth.token_auth import get_current_user
 
 
 router = APIRouter(prefix="/predict", tags=["Prediction"])

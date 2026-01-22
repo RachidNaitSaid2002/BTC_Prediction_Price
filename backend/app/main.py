@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.app.routes import getAllUsers_router, login_router, prediction_router, register_router
+from routes import getAllUsers_router, login_router, prediction_router, register_router
 
 
 # Créer l'application

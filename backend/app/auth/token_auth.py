@@ -4,8 +4,8 @@ from fastapi import HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel
 from typing import Optional
-from ..core.config import settings
-from backend.app.schemas.Token_schema import TokenData, Token
+from core.config import settings
+from schemas.Token_schema import TokenData, Token
 
 security = HTTPBearer()
 

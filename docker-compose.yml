@@ -30,6 +30,7 @@ services:
       JWT_SECRET_KEY: ${SK}
       JWT_ALGORITHM: ${ALG}
       ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES}
+      JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
     volumes:
       - ./backend/app:/app
     depends_on:
