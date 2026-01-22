@@ -1,11 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager
 
-from app.routes import prediction_router, auth_router
-from app.db.db_connection import engine, Base
-from app.services.prediction_service import get_prediction_service
-    
+from backend.app.routes import getAllUsers_router, login_router, prediction_router, register_router
 
 
 # Créer l'application
@@ -20,7 +16,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 # Inclure les routers
-app.include_router(auth_router.router)
+app.include_router(login_router.router)
+app.include_router(register_router.router)
+app.include_router(getAllUsers_router.router)
 app.include_router(prediction_router.router)

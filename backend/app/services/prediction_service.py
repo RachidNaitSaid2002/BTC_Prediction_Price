@@ -1,8 +1,7 @@
 from pyspark.ml import PipelineModel
 from pyspark.sql import SparkSession
-from pyspark.sql.types import StructType, StructField, DoubleType
 from ..core.config import settings
-from ..schemas.prediction import PredictRequest
+from ..schemas.PredictionRequest_schema import PredictRequest
 
 class PredictionService:
     def __init__(self, model_path: str = settings.MODEL_PATH):
@@ -12,35 +11,22 @@ class PredictionService:
             .config("spark.driver.memory", "2g") \
             .getOrCreate()
         
+        self.spark.sparkContext.setLogLevel("ERROR")
         self.model = PipelineModel.load(model_path)
-        
-        # Schéma Spark
-        self.schema = StructType([
-            StructField("MA_5", DoubleType(), False),
-            StructField("high", DoubleType(), False),
-            StructField("low", DoubleType(), False),
-            StructField("open", DoubleType(), False),
-            StructField("close", DoubleType(), False),
-            StructField("MA_10", DoubleType(), False),
-            StructField("prev_close", DoubleType(), False),
-            StructField("return", DoubleType(), False)
-        ])
     
     def predict(self, request: PredictRequest) -> float:
-        # Convertir en dict pour Spark
-        data = {
-            "MA_5": request.MA_5,
-            "high": request.high,
-            "low": request.low,
-            "open": request.open,
-            "close": request.close,
-            "MA_10": request.MA_10,
-            "prev_close": request.prev_close,
-            "return": request.return_val
-        }
+        data = [{
+            "MA_5": float(request.MA_5),
+            "high": float(request.high),
+            "low": float(request.low),
+            "open": float(request.open),
+            "close": float(request.close),
+            "MA_10": float(request.MA_10),
+            "prev_close": float(request.prev_close),
+            "return": float(request.return_val)
+        }]
         
-        # Créer DataFrame et prédire
-        df = self.spark.createDataFrame([data], schema=self.schema)
+        df = self.spark.createDataFrame(data)
         prediction = self.model.transform(df)
         result = prediction.select("prediction").first()[0]
         
@@ -49,7 +35,6 @@ class PredictionService:
     def close(self):
         self.spark.stop()
 
-# Singleton
 prediction_service = None
 
 def get_prediction_service() -> PredictionService:

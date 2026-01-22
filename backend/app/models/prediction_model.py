@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime
+from sqlalchemy import Column, Integer, Float, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
 from ..db.db_connection import Base
 from datetime import datetime
 
@@ -19,5 +20,5 @@ class BitcoinPrediction(Base):
 
     # Prédiction
     predicted_price = Column(Float, nullable=False)
-    
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     

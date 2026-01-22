@@ -16,3 +16,4 @@ httpx
 pydantic
 pydantic-settings
 python-jose
+psycopg2

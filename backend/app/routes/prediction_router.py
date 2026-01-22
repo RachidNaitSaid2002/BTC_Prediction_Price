@@ -1,17 +1,19 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
-from datetime import datetime
-from app.schemas.PredictRequest_schema import PredictRequest, PredictResponse
-from app.services.prediction_service import get_prediction_service
-from app.models.prediction import CryptoPrediction
-from app.db.db_connection import get_db_session
-from app.auth.token_auth import get_current_user
+
+from backend.app.schemas.PredictionRequest_schema import PredictRequest, PredictResponse
+from backend.app.services.prediction_service import get_prediction_service
+from backend.app.models.prediction_model import BitcoinPrediction
+from backend.app.db.db_connection import get_db_session
+from backend.app.auth.token_auth import get_current_user
+
 
 router = APIRouter(prefix="/predict", tags=["Prediction"])
 
+
 @router.post("/", response_model=PredictResponse)
 def predict_price(request: PredictRequest,db: Session = Depends(get_db_session),user_id: int = Depends(get_current_user)):
-    """Prédit le prix crypto"""
+    """Prédit le prix """
     try:
         service = get_prediction_service()
         
@@ -19,7 +21,7 @@ def predict_price(request: PredictRequest,db: Session = Depends(get_db_session),
         predicted_price = service.predict(request)
         
         # Sauvegarder en DB
-        prediction = CryptoPrediction(
+        prediction = BitcoinPrediction(
             MA_5=request.MA_5,
             high=request.high,
             low=request.low,
@@ -29,7 +31,6 @@ def predict_price(request: PredictRequest,db: Session = Depends(get_db_session),
             prev_close=request.prev_close,
             return_val=request.return_val,
             predicted_price=predicted_price,
-            timestamp=datetime.now(),
             user_id=user_id
         )
         

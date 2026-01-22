@@ -5,20 +5,12 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel
 from typing import Optional
 from ..core.config import settings
+from backend.app.schemas.Token_schema import TokenData, Token
 
 security = HTTPBearer()
 
 
-class Token(BaseModel):
-    """Modèle de réponse pour le token"""
-    access_token: str
-    token_type: str
 
-
-class TokenData(BaseModel):
-    """Données extraites du token"""
-    user_id: Optional[int] = None
-    username: Optional[str] = None
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
