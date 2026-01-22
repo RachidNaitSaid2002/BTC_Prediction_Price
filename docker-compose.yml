@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:13
-    container_name: quant-ai-postgres
+    container_name: postgres
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
@@ -21,7 +21,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: quant-ai-api
+    container_name: api
     restart: always
     env_file:
       - .env
@@ -30,7 +30,7 @@ services:
       JWT_SECRET_KEY: ${SK}
       JWT_ALGORITHM: ${ALG}
       ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES}
-      JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
+      JAVA_HOME: /usr/lib/jvm/java-21-openjdk-amd64
     volumes:
       - ./backend/app:/app
     depends_on:
