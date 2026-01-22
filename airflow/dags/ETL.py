@@ -18,8 +18,10 @@ SILVER_PATH = "/opt/airflow/data/Silver/"
 def get_spark():
     return SparkSession.builder \
         .appName("ETL_Taskflow") \
-        .config("spark.jars", "/opt/airflow/jars/postgresql-42.6.0.jar") \
+        .master("local[*]") \
+        .config("spark.jars", "/opt/airflow/jars/postgresql-42.7.3.jar") \
         .getOrCreate()
+
 
 
 # ---------------- Transform functions ----------------
@@ -95,7 +97,7 @@ def etl_taskflow():
 
         df_load = spark.read.parquet(silver_path)
 
-        df_load.write.jdbc(url=jdbc_url, table="silver_data_test", mode="overwrite", properties=connection_properties)
+        df_load.write.jdbc(url=jdbc_url, table="silver_data_test", mode="append", properties=connection_properties)
 
     bronze = extract()
     silver = transform(bronze)
