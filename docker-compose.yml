@@ -41,15 +41,14 @@ services:
       host : postgres
       port : 5432
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     volumes:
       - ./airflow/dags:/opt/airflow/dags
       - ./airflow/logs:/opt/airflow/logs
       - ./airflow/plugins:/opt/airflow/plugins
       - ./requirements.txt:/requirements.txt  
       - ./airflow/data:/opt/airflow/data
-      - /media/rachid:/media/rachid
+      - ./airflow/utils:/opt/airflow/utils
+      - ./airflow/jars/postgresql-42.7.3.jar:/opt/airflow/jars/postgresql-42.7.3.jar
     command: >
       bash -c "
         pip install --no-cache-dir -r /requirements.txt &&
