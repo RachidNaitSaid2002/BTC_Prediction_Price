@@ -1,19 +1,39 @@
-pandas
-pyarrow
+# Airflow DB
+psycopg2-binary
+
+# Spark
 pyspark
-dotenv
+pyarrow
 
-matplotlib
+# Data Science
+pandas
 numpy
+scikit-learn
+matplotlib
 tensorflow
-sparkxgb
 
-sqlalchemy
-python-dotenv
+# Web Framework
 fastapi
 uvicorn
 httpx
+
+# Database
+sqlalchemy
+psycopg2
+
+# Configuration
+python-dotenv
 pydantic
 pydantic-settings
+
+# Security
+passlib
+argon2_cffi
 python-jose
-psycopg2
+
+# Testing
+pytest
+requests
+
+# XGBoost
+sparkxgb

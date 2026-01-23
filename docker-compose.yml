@@ -19,8 +19,8 @@ services:
 
   api:
     build:
-      context: .  # ← CHANGÉ: racine du projet au lieu de ./backend
-      dockerfile: ./backend/Dockerfile  # ← AJOUTÉ: chemin vers le Dockerfile
+      context: .
+      dockerfile: ./backend/Dockerfile
     container_name: api
     restart: always
     env_file:
@@ -39,6 +39,56 @@ services:
         condition: service_healthy
     ports:
       - "8000:8000"
+  
+  airflow-init:
+    build:
+      context: .
+      dockerfile: airflow/Dockerfile
+    container_name: airflow-init
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    volumes:
+      - ./airflow/init_airflow.sh:/init_airflow.sh
+    entrypoint: ["/bin/bash","/init_airflow.sh"]
+
+  airflow:
+    build: 
+      context: .
+      dockerfile: airflow/Dockerfile
+    container_name: airflow
+    restart: always
+    environment:
+      database: airflow
+      user: airflow
+      password: airflow
+      host: postgres
+      port: 5432
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./requirements.txt:/requirements.txt  
+      - ./airflow/data:/opt/airflow/data
+      - ./airflow/utils:/opt/airflow/utils
+      - ./airflow/jars/postgresql-42.7.3.jar:/opt/airflow/jars/postgresql-42.7.3.jar
+    command: >
+      bash -c "
+        pip install --no-cache-dir -r /requirements.txt &&
+        airflow scheduler &
+        airflow webserver 
+      "
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
 
 volumes:
   postgres-db:
