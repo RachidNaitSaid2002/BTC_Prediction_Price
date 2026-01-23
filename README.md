@@ -130,36 +130,55 @@ docker-compose ps
 ## Structure du Projet
 ```
 BTC_PREDICTION_PRICE/
-├── airflow/
-│   ├── dags/
-│   │   ├── ETL.py                  # Pipeline d'ingestion
-│   │   └── ml_pipeline.py          # Pipeline ML
-│   ├── data/
+├── .history/                       # Historique des fichiers (VS Code)
+├── airflow/                        # Orchestration des flux de données
+│   ├── dags/                       # Workflows Python
+│   │   ├── ETL.py                  # Pipeline d'extraction et de chargement
+│   │   └── ml_pipeline.py          # Pipeline de Machine Learning
+│   ├── data/                       # Stockage des données par étapes
 │   │   ├── Bronze/                 # Données brutes
-│   │   └── Silver/                 # Données transformées
-│   ├── plugins/utils/
-│   │   └── fetch_api.py            # Client Binance API
-│   ├── Dockerfile
-│   └── init_airflow.sh
-│
-├── backend/
-│   └── app/
-│       ├── main.py                 # Point d'entrée FastAPI
-│       ├── auth/                   # JWT authentication
-│       ├── routes/                 # Endpoints API
-│       └── models/                 # SQLAlchemy models
-│
-├── ml/
-│   ├── Data/
-│   │   ├── Bronze/
-│   │   └── Silver/
-│   └── Machine Learning/notebooks/
-│       └── main.ipynb              # Recherche et expérimentation
-│
-├── docker-compose.yml
-├── init.sql                        # Schéma PostgreSQL
-├── requirements.txt
-└── README.md
+│   │   ├── Silver/                 # Données transformées
+│   │   ├── models/                 # Stockage des modèles entraînés
+│   │   └── temp/                   # Fichiers temporaires de calcul
+│   ├── logs/                       # Journaux d'exécution d'Airflow
+│   ├── plugins/utils/              # Utilitaires pour les plugins Airflow
+│   │   └── fetch_api.py            # Script de récupération des données API
+│   ├── utils/                      # Scripts d'aide (Dockerfile, init_airflow.sh)
+│   └── jars/                       # Librairies Java tierces
+├── backend/                        # Partie Serveur / API
+│   └── app/                        # Application principale
+│       ├── auth/                   # Sécurité et Jetons
+│       │   └── token_auth.py       # Gestion des tokens JWT
+│       ├── core/                   # Configuration de base
+│       │   └── config.py           # Variables globales
+│       ├── db/                     # Connexion base de données
+│       │   └── db_connection.py    # Logique de connexion SQL
+│       ├── routes/                 # Endpoints de l'API
+│       │   ├── prediction_router.py# Route pour les prévisions de prix
+│       │   └── register_router.py  # Route pour l'inscription utilisateur
+│       ├── schemas/                # Modèles de validation Pydantic
+│       │   ├── LoginRequest_schema.py      # Validation connexion
+│       │   ├── PredictionRequest_schema.py # Validation requête prédiction
+│       │   └── Token_schema.py             # Structure du token
+│       ├── services/               # Logique métier
+│       │   └── prediction_service.py # Traitement des prédictions
+│       ├── main.py                 # Entrée de l'application
+│       └── Dockerfile              # Image Docker du backend
+├── ml/                             # Recherche et Développement ML
+│   ├── Data/                       # Datasets locaux (Bronze/Silver)
+│   ├── Data_Engineer/              # Ingénierie des données
+│   │   ├── Api_integration/        # Intégration des sources externes
+│   │   └── Notebooks/              # Travaux de data engineering
+│   └── Machine Learning/           # Modélisation
+│       ├── model/                  # Fichiers de modèles sérialisés
+│       └── notebooks/              # Expérimentations (main.ipynb)
+├── venv/                           # Environnement virtuel Python
+├── .env.example                    # Modèle de configuration
+├── .gitignore                      # Fichiers à ignorer par Git
+├── docker-compose.yml              # Orchestration totale du projet
+├── init.sql                        # Initialisation de la base de données
+├── README.md                       # Documentation
+└── requirements.txt                # Dépendances Python
 ```
 
 ## Pipelines

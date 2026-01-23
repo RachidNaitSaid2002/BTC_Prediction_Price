@@ -3,7 +3,7 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.sensors.external_task import ExternalTaskSensor
 from datetime import datetime, timedelta
 from pyspark.sql import Window, SparkSession
-from pyspark.sql.functions import col, row_number, max as spark_max, min as spark_min
+from pyspark.sql.functions import col, row_number, max as spark_max, min as spark_min, monotonically_increasing_id
 import os
 from pyspark.ml.feature import VectorAssembler, StandardScaler
 from pyspark.ml.regression import RandomForestRegressor, RandomForestRegressionModel
@@ -43,7 +43,7 @@ def load_data(**context):
         "driver": "org.postgresql.Driver"
     }
     
-    # Charger les 10 000 dernières lignes
+    # Charger toutes les données (pas de LIMIT)
     query = """
         (SELECT * FROM silver_data_test 
          ORDER BY open_time ASC) as recent_data
@@ -57,16 +57,15 @@ def load_data(**context):
         properties=connection_properties
     )
     
-    # Re-trier par ordre chronologique
-    df = df.orderBy("open_time")
+    # Re-trier par ordre chronologique ET ajouter un ID unique pour stabilité
+    df = df.orderBy("open_time").withColumn("unique_id", monotonically_increasing_id())
     
     row_count = df.count()
     if row_count == 0:
         raise ValueError("Aucune donnée dans silver_data_test")
      
-    if row_count < 500:  # Vérifier qu'il y a assez de données
+    if row_count < 500:
         print(f"ATTENTION: Seulement {row_count} lignes - risque de problèmes!")
-    
     
     print(f"✓ {row_count} lignes chargées depuis PostgreSQL")
     
@@ -89,12 +88,17 @@ def prepare_ml_data(df, feature_names, target_col, train_ratio):
     print("✓ Toutes les colonnes présentes")
     
     # Vérifier les nulls
+    null_found = False
     for col_name in feature_names + [target_col]:
         null_count = df.filter(col(col_name).isNull()).count()
         if null_count > 0:
             print(f"  ⚠ {col_name}: {null_count} valeurs nulles")
+            null_found = True
     
-    # Vectorisation
+    if not null_found:
+        print("  ✓ Aucune valeur nulle détectée")
+    
+    # Vectorisation (handleInvalid="skip" enlève les lignes avec nulls)
     assembler = VectorAssembler(
         inputCols=feature_names,
         outputCol="features_raw",
@@ -102,20 +106,33 @@ def prepare_ml_data(df, feature_names, target_col, train_ratio):
     )
     df = assembler.transform(df)
     
-    # Index temporel
-    window = Window.orderBy("open_time")
+    # Filtrer les nulls dans la target (au cas où)
+    df = df.filter(col(target_col).isNotNull())
+    
+    # Index temporel STABLE avec unique_id comme secondary sort
+    window = Window.orderBy("open_time", "unique_id")
     df = df.withColumn("time_index", row_number().over(window))
     
     # Split temporel
     total_rows = df.count()
     split_point = int(total_rows * train_ratio)
     
+    print(f"\nTotal rows après nettoyage: {total_rows}")
+    print(f"Split point: {split_point}")
+    
     df_train_raw = df.filter(col("time_index") <= split_point)
     df_test_raw = df.filter(col("time_index") > split_point)
     
+    train_count = df_train_raw.count()
+    test_count = df_test_raw.count()
+    
     print(f"\nSplit: {int(train_ratio*100)}% train / {int((1-train_ratio)*100)}% test")
-    print(f"  Train: {df_train_raw.count()} lignes")
-    print(f"  Test:  {df_test_raw.count()} lignes")
+    print(f"  Train: {train_count} lignes")
+    print(f"  Test:  {test_count} lignes")
+    
+    # Vérification des comptes
+    if train_count + test_count != total_rows:
+        print(f"  ⚠ WARNING: {total_rows - train_count - test_count} lignes perdues!")
     
     # Normalisation (fit sur train uniquement)
     scaler = StandardScaler(
@@ -133,13 +150,33 @@ def prepare_ml_data(df, feature_names, target_col, train_ratio):
     train_max_time = df_train.agg(spark_max("open_time")).collect()[0][0]
     test_min_time = df_test.agg(spark_min("open_time")).collect()[0][0]
     
-    if train_max_time >= test_min_time:
-        raise ValueError("✗ FUITE TEMPORELLE DÉTECTÉE!")
-     
-    print(f"\n  DEBUG: train_max_time = {train_max_time}")
-    print(f"  DEBUG: test_min_time = {test_min_time}")
+    train_max_idx = df_train.agg(spark_max("time_index")).collect()[0][0]
+    test_min_idx = df_test.agg(spark_min("time_index")).collect()[0][0]
     
-    print(f"✓ Pas de fuite temporelle")
+    print(f"\n  DEBUG - Timestamps:")
+    print(f"    Train max: {train_max_time}")
+    print(f"    Test min:  {test_min_time}")
+    print(f"  DEBUG - Indices:")
+    print(f"    Train max index: {train_max_idx}")
+    print(f"    Test min index:  {test_min_idx}")
+    
+    # Vérification stricte
+    if train_max_time >= test_min_time:
+        print(f"\n✗ FUITE TEMPORELLE DÉTECTÉE!")
+        print(f"  Le timestamp max du train ({train_max_time}) est >= au timestamp min du test ({test_min_time})")
+        
+        # Diagnostic supplémentaire
+        overlap_count = df_train.join(
+            df_test.select("open_time").distinct(),
+            "open_time",
+            "inner"
+        ).count()
+        
+        print(f"  Nombre de timestamps en commun: {overlap_count}")
+        raise ValueError("✗ FUITE TEMPORELLE DÉTECTÉE!")
+    
+    print(f"\n✓ Pas de fuite temporelle")
+    print(f"  Gap temporel: {test_min_time - train_max_time}")
     print("=" * 50)
     
     return df_train, df_test, scaler_model
@@ -180,6 +217,9 @@ def train_random_forest(**context):
     spark = get_spark()
     df_train = spark.read.parquet(train_path)
     
+    train_count = df_train.count()
+    print(f"\nDonnées d'entraînement: {train_count} lignes")
+    
     print(f"\nConfiguration:")
     print(f"  Arbres: {RF_NUM_TREES}")
     print(f"  Profondeur max: {RF_MAX_DEPTH}")
@@ -214,6 +254,9 @@ def evaluate_random_forest(**context):
     test_path = context['ti'].xcom_pull(key='test_path', task_ids='prepare_data')
     spark = get_spark()
     df_test = spark.read.parquet(test_path)
+    
+    test_count = df_test.count()
+    print(f"\nDonnées de test: {test_count} lignes")
     
     # Charger le modèle
     model = RandomForestRegressionModel.load(f"{MODEL_OUTPUT_PATH}/random_forest")
