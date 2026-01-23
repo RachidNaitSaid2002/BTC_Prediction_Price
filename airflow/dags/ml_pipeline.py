@@ -46,8 +46,7 @@ def load_data(**context):
     # Charger les 10 000 dernières lignes
     query = """
         (SELECT * FROM silver_data_test 
-         ORDER BY open_time DESC 
-         LIMIT 10000) as recent_data
+         ORDER BY open_time ASC) as recent_data
     """
     
     print("Chargement des données depuis PostgreSQL...")
@@ -64,6 +63,10 @@ def load_data(**context):
     row_count = df.count()
     if row_count == 0:
         raise ValueError("Aucune donnée dans silver_data_test")
+     
+    if row_count < 500:  # Vérifier qu'il y a assez de données
+        print(f"ATTENTION: Seulement {row_count} lignes - risque de problèmes!")
+    
     
     print(f"✓ {row_count} lignes chargées depuis PostgreSQL")
     
@@ -132,6 +135,9 @@ def prepare_ml_data(df, feature_names, target_col, train_ratio):
     
     if train_max_time >= test_min_time:
         raise ValueError("✗ FUITE TEMPORELLE DÉTECTÉE!")
+     
+    print(f"\n  DEBUG: train_max_time = {train_max_time}")
+    print(f"  DEBUG: test_min_time = {test_min_time}")
     
     print(f"✓ Pas de fuite temporelle")
     print("=" * 50)
@@ -252,7 +258,7 @@ def evaluate_random_forest(**context):
 default_args = {
    'owner': 'airflow',
    'depends_on_past': False,
-   'start_date': datetime(2024, 1, 1),
+   'start_date': datetime(2026, 1, 21),
    'email_on_failure': False,
    'retries': 1,
    'retry_delay': timedelta(minutes=5),
@@ -275,10 +281,11 @@ wait_for_etl = ExternalTaskSensor(
     task_id='wait_for_etl',
     external_dag_id='ETL_TASKFLOW',
     external_task_id='save_silver_postgres',
-    execution_delta=timedelta(minutes=0),  # Explicit
-    mode='poke',
-    timeout=900,  # ← Augmenté à 15 min
-    poke_interval=60,  # ← Check toutes les minutes
+    execution_delta=timedelta(minutes=15),  # ML à 18:15 attend ETL de 18:00
+    mode='reschedule',
+    poke_interval=30,
+    timeout=900,  # 15 minutes de timeout
+    allowed_states=['success'],  # Seulement si ETL a réussi
     dag=dag
 )
 

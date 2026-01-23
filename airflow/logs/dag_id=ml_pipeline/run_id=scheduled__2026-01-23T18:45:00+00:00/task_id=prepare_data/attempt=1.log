@@ -1,0 +1,34 @@
+[2026-01-23T19:01:21.556+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.prepare_data scheduled__2026-01-23T18:45:00+00:00 [queued]>
+[2026-01-23T19:01:21.568+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.prepare_data scheduled__2026-01-23T18:45:00+00:00 [queued]>
+[2026-01-23T19:01:21.569+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T19:01:21.596+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): prepare_data> on 2026-01-23 18:45:00+00:00
+[2026-01-23T19:01:21.603+0000] {standard_task_runner.py:60} INFO - Started process 1586 to run task
+[2026-01-23T19:01:21.609+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'prepare_data', 'scheduled__2026-01-23T18:45:00+00:00', '--job-id', '261', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpbork_w79']
+[2026-01-23T19:01:21.613+0000] {standard_task_runner.py:88} INFO - Job 261: Subtask prepare_data
+[2026-01-23T19:01:21.679+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.prepare_data scheduled__2026-01-23T18:45:00+00:00 [running]> on host 29e73cfdca90
+[2026-01-23T19:01:21.789+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='prepare_data' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:45:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-23T18:45:00+00:00'
+[2026-01-23T19:01:29.984+0000] {logging_mixin.py:188} INFO - ==================================================
+[2026-01-23T19:01:29.986+0000] {logging_mixin.py:188} INFO - Préparation des données
+[2026-01-23T19:01:29.989+0000] {logging_mixin.py:188} INFO - ==================================================
+[2026-01-23T19:01:30.021+0000] {logging_mixin.py:188} INFO - ✓ Toutes les colonnes présentes
+[2026-01-23T19:01:36.148+0000] {logging_mixin.py:188} INFO - 
+Split: 80% train / 19% test
+[2026-01-23T19:01:36.710+0000] {logging_mixin.py:188} INFO -   Train: 192 lignes
+[2026-01-23T19:01:37.113+0000] {logging_mixin.py:188} INFO -   Test:  48 lignes
+[2026-01-23T19:01:38.718+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/ml_pipeline.py", line 150, in prepare_data
+    df_train, df_test, scaler_model = prepare_ml_data(
+  File "/opt/airflow/dags/ml_pipeline.py", line 134, in prepare_ml_data
+    raise ValueError("✗ FUITE TEMPORELLE DÉTECTÉE!")
+ValueError: ✗ FUITE TEMPORELLE DÉTECTÉE!
+[2026-01-23T19:01:38.737+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=ml_pipeline, task_id=prepare_data, execution_date=20260123T184500, start_date=20260123T190121, end_date=20260123T190138
+[2026-01-23T19:01:38.766+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 261 for task prepare_data (✗ FUITE TEMPORELLE DÉTECTÉE!; 1586)
+[2026-01-23T19:01:38.801+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-01-23T19:01:38.836+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
