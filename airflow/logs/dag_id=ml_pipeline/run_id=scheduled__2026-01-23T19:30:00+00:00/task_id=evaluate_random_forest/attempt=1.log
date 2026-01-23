@@ -1,0 +1,35 @@
+[2026-01-23T19:47:03.784+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.evaluate_random_forest scheduled__2026-01-23T19:30:00+00:00 [queued]>
+[2026-01-23T19:47:03.797+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.evaluate_random_forest scheduled__2026-01-23T19:30:00+00:00 [queued]>
+[2026-01-23T19:47:03.797+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T19:47:03.812+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): evaluate_random_forest> on 2026-01-23 19:30:00+00:00
+[2026-01-23T19:47:03.820+0000] {standard_task_runner.py:60} INFO - Started process 12295 to run task
+[2026-01-23T19:47:03.825+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'evaluate_random_forest', 'scheduled__2026-01-23T19:30:00+00:00', '--job-id', '291', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpbrclo71s']
+[2026-01-23T19:47:03.828+0000] {standard_task_runner.py:88} INFO - Job 291: Subtask evaluate_random_forest
+[2026-01-23T19:47:03.882+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.evaluate_random_forest scheduled__2026-01-23T19:30:00+00:00 [running]> on host 29e73cfdca90
+[2026-01-23T19:47:03.973+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='evaluate_random_forest' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T19:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-23T19:30:00+00:00'
+[2026-01-23T19:47:03.975+0000] {logging_mixin.py:188} INFO - 
+==================================================
+[2026-01-23T19:47:03.976+0000] {logging_mixin.py:188} INFO - ÉVALUATION - RANDOM FOREST
+[2026-01-23T19:47:03.976+0000] {logging_mixin.py:188} INFO - ==================================================
+[2026-01-23T19:47:17.773+0000] {logging_mixin.py:188} INFO - 
+Résultats:
+[2026-01-23T19:47:17.774+0000] {logging_mixin.py:188} INFO -   RMSE: $310.27
+[2026-01-23T19:47:17.774+0000] {logging_mixin.py:188} INFO -   MAE:  $219.79
+[2026-01-23T19:47:17.775+0000] {logging_mixin.py:188} INFO -   R²:   -0.0067
+[2026-01-23T19:47:17.776+0000] {logging_mixin.py:188} INFO - 
+Exemples de prédictions:
+[2026-01-23T19:47:18.135+0000] {logging_mixin.py:188} INFO - +---------------+-----------------+
+|close_t_plus_10|prediction       |
++---------------+-----------------+
+|90763.6        |90789.16158034414|
+|90710.214      |90776.3057812092 |
+|90710.214      |90675.15257148343|
+|90763.6        |90674.78013373738|
+|90763.6        |90648.16726046968|
++---------------+-----------------+
+only showing top 5 rows
+[2026-01-23T19:47:18.136+0000] {logging_mixin.py:188} INFO - ==================================================
+[2026-01-23T19:47:18.137+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-01-23T19:47:18.152+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ml_pipeline, task_id=evaluate_random_forest, execution_date=20260123T193000, start_date=20260123T194703, end_date=20260123T194718
+[2026-01-23T19:47:18.183+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T19:47:18.209+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
