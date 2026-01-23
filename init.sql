@@ -2,43 +2,32 @@
 -- INIT.SQL - Initialisation de la base de données Bitcoin Prediction
 -- ============================================================================
 
--- Création de la base de données
-CREATE DATABASE bitcoin_prediction;
-
--- Création d'un utilisateur dédié à l'application
+-- Créer l'utilisateur pour l'API
 CREATE USER btc_user WITH PASSWORD 'manal.2480';
 
--- Attribution des privilèges sur la base de données
-GRANT ALL PRIVILEGES ON DATABASE bitcoin_prediction TO btc_user;
+-- Donner accès à la base airflow (partagée)
+GRANT ALL PRIVILEGES ON DATABASE airflow TO btc_user;
 
--- Connexion à la base
-\c bitcoin_prediction
+-- Connexion à la base airflow
+\c airflow
 
 -- Attribution des droits sur le schéma public
 GRANT ALL ON SCHEMA public TO btc_user;
+GRANT ALL ON SCHEMA public TO airflow;
 
 -- ============================================================================
--- SILVER LAYER (Structure initiale)
+-- TABLES POUR L'API
 -- ============================================================================
-
-CREATE TABLE IF NOT EXISTS btc_cleaned (
-    id SERIAL PRIMARY KEY
-);
 
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
-    
     username VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- Vérifier si la table existe et la supprimer
-DROP TABLE IF EXISTS bitcoin_predictions CASCADE;
-
--- Recréer la table avec le bon schéma
-CREATE TABLE bitcoin_predictions (
+CREATE TABLE IF NOT EXISTS bitcoin_predictions (
     id SERIAL PRIMARY KEY,
-    
     "MA_5" DOUBLE PRECISION NOT NULL,
     high DOUBLE PRECISION NOT NULL,
     low DOUBLE PRECISION NOT NULL,
@@ -48,21 +37,43 @@ CREATE TABLE bitcoin_predictions (
     prev_close DOUBLE PRECISION NOT NULL,
     return_val DOUBLE PRECISION NOT NULL,
     predicted_price DOUBLE PRECISION NOT NULL,
-
     timestamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    user_id INTEGER NOT NULL REFERENCES users(id)
+    user_id INTEGER REFERENCES users(id)
 );
 
--- Attribution des privilèges sur les tables
+-- ============================================================================
+-- TABLES POUR AIRFLOW/ML PIPELINE
+-- ============================================================================
+
+CREATE TABLE IF NOT EXISTS silver_data_test (
+    id SERIAL PRIMARY KEY,
+    open_time TIMESTAMP NOT NULL,
+    open DOUBLE PRECISION,
+    high DOUBLE PRECISION,
+    low DOUBLE PRECISION,
+    close DOUBLE PRECISION,
+    volume DOUBLE PRECISION,
+    close_time TIMESTAMP,
+    quote_volume DOUBLE PRECISION,
+    count INTEGER,  
+    taker_buy_volume DOUBLE PRECISION,
+    taker_buy_quote_volume DOUBLE PRECISION,
+    taker_ratio DOUBLE PRECISION,
+    ma_5 DOUBLE PRECISION, 
+    ma_10 DOUBLE PRECISION, 
+    prev_close DOUBLE PRECISION,
+    return DOUBLE PRECISION,
+    close_t_plus_10 DOUBLE PRECISION
+);
+
+-- Attribution des privilèges
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO btc_user;
-
--- FIX: Attribution des privilèges sur les séquences
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO airflow;
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO btc_user;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO airflow;
 
--- Attribution automatique des privilèges pour les futures tables
-ALTER DEFAULT PRIVILEGES IN SCHEMA public 
-GRANT ALL ON TABLES TO btc_user;
-
--- Attribution automatique des privilèges pour les futures séquences
-ALTER DEFAULT PRIVILEGES IN SCHEMA public 
-GRANT USAGE, SELECT ON SEQUENCES TO btc_user;
+-- Attribution automatique pour les futures tables
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO btc_user;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO airflow;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT USAGE, SELECT ON SEQUENCES TO btc_user;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT USAGE, SELECT ON SEQUENCES TO airflow;

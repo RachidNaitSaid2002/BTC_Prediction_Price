@@ -281,11 +281,10 @@ wait_for_etl = ExternalTaskSensor(
     task_id='wait_for_etl',
     external_dag_id='ETL_TASKFLOW',
     external_task_id='save_silver_postgres',
-    execution_delta=timedelta(minutes=15),  # ML à 18:15 attend ETL de 18:00
     mode='reschedule',
     poke_interval=30,
-    timeout=900,  # 15 minutes de timeout
-    allowed_states=['success'],  # Seulement si ETL a réussi
+    timeout=900,
+    allowed_states=['success'],
     dag=dag
 )
 
