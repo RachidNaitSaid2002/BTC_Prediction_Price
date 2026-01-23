@@ -1,0 +1,26 @@
+[2026-01-23T19:16:11.533+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.prepare_data scheduled__2026-01-23T19:00:00+00:00 [queued]>
+[2026-01-23T19:16:11.554+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.prepare_data scheduled__2026-01-23T19:00:00+00:00 [queued]>
+[2026-01-23T19:16:11.555+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T19:16:11.597+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): prepare_data> on 2026-01-23 19:00:00+00:00
+[2026-01-23T19:16:11.607+0000] {standard_task_runner.py:60} INFO - Started process 4598 to run task
+[2026-01-23T19:16:11.611+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'prepare_data', 'scheduled__2026-01-23T19:00:00+00:00', '--job-id', '272', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpxfz84bbp']
+[2026-01-23T19:16:11.616+0000] {standard_task_runner.py:88} INFO - Job 272: Subtask prepare_data
+[2026-01-23T19:16:11.694+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.prepare_data scheduled__2026-01-23T19:00:00+00:00 [running]> on host 29e73cfdca90
+[2026-01-23T19:16:11.804+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='prepare_data' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T19:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-23T19:00:00+00:00'
+[2026-01-23T19:16:20.151+0000] {logging_mixin.py:188} INFO - ==================================================
+[2026-01-23T19:16:20.152+0000] {logging_mixin.py:188} INFO - Préparation des données
+[2026-01-23T19:16:20.152+0000] {logging_mixin.py:188} INFO - ==================================================
+[2026-01-23T19:16:20.190+0000] {logging_mixin.py:188} INFO - ✓ Toutes les colonnes présentes
+[2026-01-23T19:16:26.911+0000] {logging_mixin.py:188} INFO - 
+Split: 80% train / 19% test
+[2026-01-23T19:16:27.971+0000] {logging_mixin.py:188} INFO -   Train: 204 lignes
+[2026-01-23T19:16:28.422+0000] {logging_mixin.py:188} INFO -   Test:  51 lignes
+[2026-01-23T19:16:30.163+0000] {logging_mixin.py:188} INFO - 
+  DEBUG: train_max_time = 2026-01-23 18:24:00
+[2026-01-23T19:16:30.166+0000] {logging_mixin.py:188} INFO -   DEBUG: test_min_time = 2026-01-23 18:25:00
+[2026-01-23T19:16:30.167+0000] {logging_mixin.py:188} INFO - ✓ Pas de fuite temporelle
+[2026-01-23T19:16:30.168+0000] {logging_mixin.py:188} INFO - ==================================================
+[2026-01-23T19:16:32.724+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-01-23T19:16:32.741+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ml_pipeline, task_id=prepare_data, execution_date=20260123T190000, start_date=20260123T191611, end_date=20260123T191632
+[2026-01-23T19:16:32.778+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T19:16:32.825+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

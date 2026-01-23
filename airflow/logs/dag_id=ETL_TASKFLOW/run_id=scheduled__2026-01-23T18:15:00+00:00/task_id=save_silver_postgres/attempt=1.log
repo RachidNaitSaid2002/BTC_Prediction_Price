@@ -1,0 +1,15 @@
+[2026-01-23T18:32:55.689+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_TASKFLOW.save_silver_postgres scheduled__2026-01-23T18:15:00+00:00 [queued]>
+[2026-01-23T18:32:55.701+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_TASKFLOW.save_silver_postgres scheduled__2026-01-23T18:15:00+00:00 [queued]>
+[2026-01-23T18:32:55.702+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2026-01-23T18:32:55.718+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonDecoratedOperator): save_silver_postgres> on 2026-01-23 18:15:00+00:00
+[2026-01-23T18:32:55.724+0000] {standard_task_runner.py:60} INFO - Started process 6890 to run task
+[2026-01-23T18:32:55.730+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ETL_TASKFLOW', 'save_silver_postgres', 'scheduled__2026-01-23T18:15:00+00:00', '--job-id', '207', '--raw', '--subdir', 'DAGS_FOLDER/ETL.py', '--cfg-path', '/tmp/tmpxrk3bzn3']
+[2026-01-23T18:32:55.734+0000] {standard_task_runner.py:88} INFO - Job 207: Subtask save_silver_postgres
+[2026-01-23T18:32:55.806+0000] {task_command.py:423} INFO - Running <TaskInstance: ETL_TASKFLOW.save_silver_postgres scheduled__2026-01-23T18:15:00+00:00 [running]> on host 29e73cfdca90
+[2026-01-23T18:32:55.919+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL_TASKFLOW' AIRFLOW_CTX_TASK_ID='save_silver_postgres' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:15:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-23T18:15:00+00:00'
+[2026-01-23T18:32:59.536+0000] {logging_mixin.py:188} INFO - jdbc:postgresql://postgres:5432/***
+[2026-01-23T18:32:59.537+0000] {logging_mixin.py:188} INFO - {'user': '***', 'password': '***', 'driver': 'org.postgresql.Driver'}
+[2026-01-23T18:33:04.778+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-01-23T18:33:04.794+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ETL_TASKFLOW, task_id=save_silver_postgres, execution_date=20260123T181500, start_date=20260123T183255, end_date=20260123T183304
+[2026-01-23T18:33:04.849+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:33:04.886+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

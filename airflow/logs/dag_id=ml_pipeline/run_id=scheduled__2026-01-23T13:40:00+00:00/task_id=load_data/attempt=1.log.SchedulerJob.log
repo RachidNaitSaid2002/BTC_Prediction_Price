@@ -1,0 +1,1 @@
+[2026-01-23T13:50:31.350+0000] {scheduler_job_runner.py:781} ERROR - Executor reports task instance <TaskInstance: ml_pipeline.load_data scheduled__2026-01-23T13:40:00+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?
