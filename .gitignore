@@ -3,5 +3,7 @@
 .history/
 .ipynb_checkpoints/
 __pycache__/
+
+/airflow/dags/
 /airflow/logs/
 /airflow/data/

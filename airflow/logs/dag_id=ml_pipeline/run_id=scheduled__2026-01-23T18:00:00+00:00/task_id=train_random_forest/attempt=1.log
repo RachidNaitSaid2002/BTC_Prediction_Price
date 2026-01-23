@@ -1,0 +1,26 @@
+[2026-01-23T18:17:19.063+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.train_random_forest scheduled__2026-01-23T18:00:00+00:00 [queued]>
+[2026-01-23T18:17:19.073+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.train_random_forest scheduled__2026-01-23T18:00:00+00:00 [queued]>
+[2026-01-23T18:17:19.074+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:17:19.090+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): train_random_forest> on 2026-01-23 18:00:00+00:00
+[2026-01-23T18:17:19.098+0000] {standard_task_runner.py:60} INFO - Started process 837 to run task
+[2026-01-23T18:17:19.104+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'train_random_forest', 'scheduled__2026-01-23T18:00:00+00:00', '--job-id', '115', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmppl6ygjhj']
+[2026-01-23T18:17:19.108+0000] {standard_task_runner.py:88} INFO - Job 115: Subtask train_random_forest
+[2026-01-23T18:17:19.167+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.train_random_forest scheduled__2026-01-23T18:00:00+00:00 [running]> on host f2c086da0204
+[2026-01-23T18:17:19.278+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='train_random_forest' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-23T18:00:00+00:00'
+[2026-01-23T18:17:19.281+0000] {logging_mixin.py:188} INFO - 
+==================================================
+[2026-01-23T18:17:19.282+0000] {logging_mixin.py:188} INFO - TRAINING - RANDOM FOREST
+[2026-01-23T18:17:19.283+0000] {logging_mixin.py:188} INFO - ==================================================
+[2026-01-23T18:17:26.144+0000] {logging_mixin.py:188} INFO - 
+Configuration:
+[2026-01-23T18:17:26.146+0000] {logging_mixin.py:188} INFO -   Arbres: 100
+[2026-01-23T18:17:26.146+0000] {logging_mixin.py:188} INFO -   Profondeur max: 10
+[2026-01-23T18:17:26.147+0000] {logging_mixin.py:188} INFO -   Min instances/noeud: 5
+[2026-01-23T18:17:26.184+0000] {logging_mixin.py:188} INFO - 
+Entraînement en cours...
+[2026-01-23T18:17:34.860+0000] {logging_mixin.py:188} INFO - ✓ Modèle sauvegardé: /opt/***/data/models/random_forest
+[2026-01-23T18:17:34.862+0000] {logging_mixin.py:188} INFO - ==================================================
+[2026-01-23T18:17:34.863+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-01-23T18:17:34.881+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ml_pipeline, task_id=train_random_forest, execution_date=20260123T180000, start_date=20260123T181719, end_date=20260123T181734
+[2026-01-23T18:17:34.946+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:17:34.982+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,71 @@
+[2026-01-23T18:15:47.919+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_TASKFLOW.transform scheduled__2026-01-23T18:00:00+00:00 [queued]>
+[2026-01-23T18:15:47.929+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_TASKFLOW.transform scheduled__2026-01-23T18:00:00+00:00 [queued]>
+[2026-01-23T18:15:47.930+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2026-01-23T18:15:47.947+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonDecoratedOperator): transform> on 2026-01-23 18:00:00+00:00
+[2026-01-23T18:15:47.953+0000] {standard_task_runner.py:60} INFO - Started process 1268 to run task
+[2026-01-23T18:15:47.958+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ETL_TASKFLOW', 'transform', 'scheduled__2026-01-23T18:00:00+00:00', '--job-id', '108', '--raw', '--subdir', 'DAGS_FOLDER/ETL.py', '--cfg-path', '/tmp/tmp1bn3ep36']
+[2026-01-23T18:15:47.962+0000] {standard_task_runner.py:88} INFO - Job 108: Subtask transform
+[2026-01-23T18:15:48.019+0000] {task_command.py:423} INFO - Running <TaskInstance: ETL_TASKFLOW.transform scheduled__2026-01-23T18:00:00+00:00 [running]> on host 2c38044477dc
+[2026-01-23T18:15:48.142+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL_TASKFLOW' AIRFLOW_CTX_TASK_ID='transform' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-23T18:00:00+00:00'
+[2026-01-23T18:15:53.650+0000] {local_task_job_runner.py:121} ERROR - Received SIGTERM. Terminating subprocesses
+[2026-01-23T18:15:53.654+0000] {process_utils.py:131} INFO - Sending 15 to group 1268. PIDs of all processes in the group: [1269, 1268]
+[2026-01-23T18:15:53.656+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 1268
+[2026-01-23T18:15:53.660+0000] {taskinstance.py:2450} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-01-23T18:15:53.671+0000] {clientserver.py:538} INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.8/socket.py", line 669, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2452, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+[2026-01-23T18:15:54.119+0000] {clientserver.py:543} INFO - Closing down clientserver connection
+[2026-01-23T18:15:54.121+0000] {java_gateway.py:1055} ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.8/socket.py", line 669, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2452, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/airflow/.local/lib/python3.8/site-packages/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+[2026-01-23T18:15:54.126+0000] {clientserver.py:543} INFO - Closing down clientserver connection
+[2026-01-23T18:15:54.128+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/decorators/base.py", line 241, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/ETL.py", line 60, in transform
+    df = spark.read.parquet(bronze_path)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pyspark/sql/session.py", line 1706, in read
+    return DataFrameReader(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pyspark/sql/readwriter.py", line 70, in __init__
+    self._jreader = spark._jsparkSession.read()
+  File "/home/airflow/.local/lib/python3.8/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+  File "/home/airflow/.local/lib/python3.8/site-packages/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o28.read
+[2026-01-23T18:15:54.148+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=ETL_TASKFLOW, task_id=transform, execution_date=20260123T180000, start_date=20260123T181547, end_date=20260123T181554
+[2026-01-23T18:15:54.167+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 108 for task transform (An error occurred while calling o28.read; 1268)
+[2026-01-23T18:15:54.185+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=1268, status='terminated', exitcode=1, started='18:15:47') (1268) terminated with exit code 1
+[2026-01-23T18:15:54.449+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=1269, status='terminated', started='18:15:47') (1269) terminated with exit code None
+[2026-01-23T18:15:54.451+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 143
+[2026-01-23T18:15:54.489+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

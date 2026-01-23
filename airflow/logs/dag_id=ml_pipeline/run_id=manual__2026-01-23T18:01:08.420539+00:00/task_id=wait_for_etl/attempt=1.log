@@ -1,0 +1,179 @@
+[2026-01-23T18:03:27.828+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:03:27.848+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:03:27.849+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:03:27.884+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 18:01:08.420539+00:00
+[2026-01-23T18:03:27.896+0000] {standard_task_runner.py:60} INFO - Started process 1163 to run task
+[2026-01-23T18:03:27.902+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T18:01:08.420539+00:00', '--job-id', '66', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpeqb3b5hm']
+[2026-01-23T18:03:27.906+0000] {standard_task_runner.py:88} INFO - Job 66: Subtask wait_for_etl
+[2026-01-23T18:03:27.974+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [running]> on host ba0940bbb30b
+[2026-01-23T18:03:28.083+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:01:08.420539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T18:01:08.420539+00:00'
+[2026-01-23T18:03:28.096+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T17:46:08.420539+00:00 ... 
+[2026-01-23T18:03:28.148+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-01-23T18:03:28.164+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:03:28.200+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T18:04:35.250+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:04:35.262+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:04:35.262+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:04:35.279+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 18:01:08.420539+00:00
+[2026-01-23T18:04:35.287+0000] {standard_task_runner.py:60} INFO - Started process 1682 to run task
+[2026-01-23T18:04:35.292+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T18:01:08.420539+00:00', '--job-id', '70', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpq30jt8sc']
+[2026-01-23T18:04:35.294+0000] {standard_task_runner.py:88} INFO - Job 70: Subtask wait_for_etl
+[2026-01-23T18:04:35.413+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [running]> on host ba0940bbb30b
+[2026-01-23T18:04:35.556+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:01:08.420539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T18:01:08.420539+00:00'
+[2026-01-23T18:04:35.574+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T17:46:08.420539+00:00 ... 
+[2026-01-23T18:04:35.639+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-01-23T18:04:35.676+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:04:35.732+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T18:05:41.203+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:05:41.216+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:05:41.217+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:05:41.235+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 18:01:08.420539+00:00
+[2026-01-23T18:05:41.247+0000] {standard_task_runner.py:60} INFO - Started process 1818 to run task
+[2026-01-23T18:05:41.254+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T18:01:08.420539+00:00', '--job-id', '73', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpkmdwkobf']
+[2026-01-23T18:05:41.258+0000] {standard_task_runner.py:88} INFO - Job 73: Subtask wait_for_etl
+[2026-01-23T18:05:41.333+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [running]> on host ba0940bbb30b
+[2026-01-23T18:05:41.452+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:01:08.420539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T18:01:08.420539+00:00'
+[2026-01-23T18:05:41.466+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T17:46:08.420539+00:00 ... 
+[2026-01-23T18:05:41.530+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-01-23T18:05:41.556+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:05:41.601+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T18:06:46.777+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:06:46.789+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:06:46.790+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:06:46.807+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 18:01:08.420539+00:00
+[2026-01-23T18:06:46.817+0000] {standard_task_runner.py:60} INFO - Started process 1954 to run task
+[2026-01-23T18:06:46.824+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T18:01:08.420539+00:00', '--job-id', '76', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpogkp2rfv']
+[2026-01-23T18:06:46.828+0000] {standard_task_runner.py:88} INFO - Job 76: Subtask wait_for_etl
+[2026-01-23T18:06:46.889+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [running]> on host ba0940bbb30b
+[2026-01-23T18:06:47.002+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:01:08.420539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T18:01:08.420539+00:00'
+[2026-01-23T18:06:47.021+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T17:46:08.420539+00:00 ... 
+[2026-01-23T18:06:47.077+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-01-23T18:06:47.126+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:06:47.165+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T18:07:52.027+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:07:52.038+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:07:52.039+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:07:52.056+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 18:01:08.420539+00:00
+[2026-01-23T18:07:52.066+0000] {standard_task_runner.py:60} INFO - Started process 2090 to run task
+[2026-01-23T18:07:52.073+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T18:01:08.420539+00:00', '--job-id', '79', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpynpruccc']
+[2026-01-23T18:07:52.078+0000] {standard_task_runner.py:88} INFO - Job 79: Subtask wait_for_etl
+[2026-01-23T18:07:52.146+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [running]> on host ba0940bbb30b
+[2026-01-23T18:07:52.270+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:01:08.420539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T18:01:08.420539+00:00'
+[2026-01-23T18:07:52.290+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T17:46:08.420539+00:00 ... 
+[2026-01-23T18:07:52.357+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-01-23T18:07:52.413+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:07:52.474+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T18:08:57.713+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:08:57.724+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:08:57.725+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:08:57.744+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 18:01:08.420539+00:00
+[2026-01-23T18:08:57.752+0000] {standard_task_runner.py:60} INFO - Started process 2226 to run task
+[2026-01-23T18:08:57.756+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T18:01:08.420539+00:00', '--job-id', '82', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpa0hhyzjd']
+[2026-01-23T18:08:57.758+0000] {standard_task_runner.py:88} INFO - Job 82: Subtask wait_for_etl
+[2026-01-23T18:08:57.831+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [running]> on host ba0940bbb30b
+[2026-01-23T18:08:57.946+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:01:08.420539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T18:01:08.420539+00:00'
+[2026-01-23T18:08:57.958+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T17:46:08.420539+00:00 ... 
+[2026-01-23T18:08:58.005+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-01-23T18:08:58.022+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:08:58.072+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T18:10:03.128+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:10:03.141+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:10:03.142+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:10:03.159+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 18:01:08.420539+00:00
+[2026-01-23T18:10:03.166+0000] {standard_task_runner.py:60} INFO - Started process 2362 to run task
+[2026-01-23T18:10:03.170+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T18:01:08.420539+00:00', '--job-id', '85', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmp_a89rf2a']
+[2026-01-23T18:10:03.173+0000] {standard_task_runner.py:88} INFO - Job 85: Subtask wait_for_etl
+[2026-01-23T18:10:03.241+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [running]> on host ba0940bbb30b
+[2026-01-23T18:10:03.359+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:01:08.420539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T18:01:08.420539+00:00'
+[2026-01-23T18:10:03.373+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T17:46:08.420539+00:00 ... 
+[2026-01-23T18:10:03.433+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-01-23T18:10:03.473+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:10:03.527+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T18:11:08.522+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:11:08.532+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:11:08.533+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:11:08.547+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 18:01:08.420539+00:00
+[2026-01-23T18:11:08.554+0000] {standard_task_runner.py:60} INFO - Started process 2515 to run task
+[2026-01-23T18:11:08.559+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T18:01:08.420539+00:00', '--job-id', '88', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpm2w0hpr1']
+[2026-01-23T18:11:08.563+0000] {standard_task_runner.py:88} INFO - Job 88: Subtask wait_for_etl
+[2026-01-23T18:11:08.622+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [running]> on host ba0940bbb30b
+[2026-01-23T18:11:08.722+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:01:08.420539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T18:01:08.420539+00:00'
+[2026-01-23T18:11:08.737+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T17:46:08.420539+00:00 ... 
+[2026-01-23T18:11:08.796+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-01-23T18:11:08.819+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:11:08.865+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T18:12:13.113+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:12:13.128+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:12:13.129+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:12:13.144+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 18:01:08.420539+00:00
+[2026-01-23T18:12:13.150+0000] {standard_task_runner.py:60} INFO - Started process 2651 to run task
+[2026-01-23T18:12:13.154+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T18:01:08.420539+00:00', '--job-id', '91', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpzlwc1g05']
+[2026-01-23T18:12:13.156+0000] {standard_task_runner.py:88} INFO - Job 91: Subtask wait_for_etl
+[2026-01-23T18:12:13.221+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [running]> on host ba0940bbb30b
+[2026-01-23T18:12:13.317+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:01:08.420539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T18:01:08.420539+00:00'
+[2026-01-23T18:12:13.331+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T17:46:08.420539+00:00 ... 
+[2026-01-23T18:12:13.384+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-01-23T18:12:13.415+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:12:13.471+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T18:13:56.986+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:13:57.000+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:13:57.001+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:13:57.024+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 18:01:08.420539+00:00
+[2026-01-23T18:13:57.034+0000] {standard_task_runner.py:60} INFO - Started process 227 to run task
+[2026-01-23T18:13:57.041+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T18:01:08.420539+00:00', '--job-id', '96', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpe88hcai4']
+[2026-01-23T18:13:57.045+0000] {standard_task_runner.py:88} INFO - Job 96: Subtask wait_for_etl
+[2026-01-23T18:13:57.120+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [running]> on host 2c38044477dc
+[2026-01-23T18:13:57.255+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:01:08.420539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T18:01:08.420539+00:00'
+[2026-01-23T18:13:57.268+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T17:46:08.420539+00:00 ... 
+[2026-01-23T18:13:57.317+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-01-23T18:13:57.347+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:13:57.401+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T18:14:33.532+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:14:33.543+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:14:33.544+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:14:33.573+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 18:01:08.420539+00:00
+[2026-01-23T18:14:33.597+0000] {standard_task_runner.py:60} INFO - Started process 346 to run task
+[2026-01-23T18:14:33.600+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T18:01:08.420539+00:00', '--job-id', '99', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpqqdhrg7n']
+[2026-01-23T18:14:33.603+0000] {standard_task_runner.py:88} INFO - Job 99: Subtask wait_for_etl
+[2026-01-23T18:14:33.660+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [running]> on host 2c38044477dc
+[2026-01-23T18:14:33.756+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:01:08.420539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T18:01:08.420539+00:00'
+[2026-01-23T18:14:33.770+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T17:46:08.420539+00:00 ... 
+[2026-01-23T18:14:33.855+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-01-23T18:14:33.903+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:14:33.939+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T18:15:11.601+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:15:11.612+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:15:11.613+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:15:11.631+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 18:01:08.420539+00:00
+[2026-01-23T18:15:11.639+0000] {standard_task_runner.py:60} INFO - Started process 534 to run task
+[2026-01-23T18:15:11.643+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T18:01:08.420539+00:00', '--job-id', '104', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpcb6xrlpv']
+[2026-01-23T18:15:11.646+0000] {standard_task_runner.py:88} INFO - Job 104: Subtask wait_for_etl
+[2026-01-23T18:15:11.714+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [running]> on host 2c38044477dc
+[2026-01-23T18:15:11.820+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:01:08.420539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T18:01:08.420539+00:00'
+[2026-01-23T18:15:11.833+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T17:46:08.420539+00:00 ... 
+[2026-01-23T18:15:11.890+0000] {taskinstance.py:2658} INFO - Rescheduling task, marking task as UP_FOR_RESCHEDULE
+[2026-01-23T18:15:11.904+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T18:15:11.938+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T18:17:09.820+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:17:09.835+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [queued]>
+[2026-01-23T18:17:09.836+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T18:17:09.869+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 18:01:08.420539+00:00
+[2026-01-23T18:17:09.877+0000] {standard_task_runner.py:60} INFO - Started process 769 to run task
+[2026-01-23T18:17:09.884+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T18:01:08.420539+00:00', '--job-id', '113', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmp1yndxvie']
+[2026-01-23T18:17:09.886+0000] {standard_task_runner.py:88} INFO - Job 113: Subtask wait_for_etl
+[2026-01-23T18:17:09.963+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T18:01:08.420539+00:00 [running]> on host f2c086da0204
+[2026-01-23T18:17:10.082+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T18:01:08.420539+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T18:01:08.420539+00:00'
+[2026-01-23T18:17:10.098+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T17:46:08.420539+00:00 ... 
+[2026-01-23T18:17:10.112+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/sensors/external_task.py", line 334, in execute
+    super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/sensors/base.py", line 282, in execute
+    raise AirflowSensorTimeout(message)
+airflow.exceptions.AirflowSensorTimeout: Sensor has timed out; run duration of 822.099912 seconds exceeds the specified timeout of 720.0.
+[2026-01-23T18:17:10.131+0000] {taskinstance.py:1138} INFO - Immediate failure requested. Marking task as FAILED. dag_id=ml_pipeline, task_id=wait_for_etl, execution_date=20260123T180108, start_date=20260123T181709, end_date=20260123T181710
+[2026-01-23T18:17:10.155+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 113 for task wait_for_etl (Sensor has timed out; run duration of 822.099912 seconds exceeds the specified timeout of 720.0.; 769)
+[2026-01-23T18:17:10.186+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-01-23T18:17:10.242+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
