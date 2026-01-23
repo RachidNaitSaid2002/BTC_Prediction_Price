@@ -1,0 +1,21 @@
+[2026-01-23T11:34:00.099+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.evaluate_models manual__2026-01-23T11:32:44.374859+00:00 [queued]>
+[2026-01-23T11:34:00.111+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.evaluate_models manual__2026-01-23T11:32:44.374859+00:00 [queued]>
+[2026-01-23T11:34:00.113+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T11:34:00.130+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): evaluate_models> on 2026-01-23 11:32:44.374859+00:00
+[2026-01-23T11:34:00.137+0000] {standard_task_runner.py:60} INFO - Started process 7358 to run task
+[2026-01-23T11:34:00.145+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'evaluate_models', 'manual__2026-01-23T11:32:44.374859+00:00', '--job-id', '21', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpi4t0b80g']
+[2026-01-23T11:34:00.150+0000] {standard_task_runner.py:88} INFO - Job 21: Subtask evaluate_models
+[2026-01-23T11:34:00.221+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.evaluate_models manual__2026-01-23T11:32:44.374859+00:00 [running]> on host 0e061312f598
+[2026-01-23T11:34:00.329+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='evaluate_models' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T11:32:44.374859+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T11:32:44.374859+00:00'
+[2026-01-23T11:34:14.737+0000] {logging_mixin.py:188} INFO - [Linear Regression] Évaluation...
+[2026-01-23T11:34:15.828+0000] {logging_mixin.py:188} INFO -   RMSE: $9.81 | MAE: $8.75 | R²: -inf
+[2026-01-23T11:34:15.830+0000] {logging_mixin.py:188} INFO - [Random Forest] Évaluation...
+[2026-01-23T11:34:16.660+0000] {logging_mixin.py:188} INFO -   RMSE: $1.94 | MAE: $1.55 | R²: -inf
+[2026-01-23T11:34:16.661+0000] {logging_mixin.py:188} INFO - [GBT] Évaluation...
+[2026-01-23T11:34:17.250+0000] {logging_mixin.py:188} INFO -   RMSE: $0.00 | MAE: $0.00 | R²: -inf
+[2026-01-23T11:34:17.251+0000] {logging_mixin.py:188} INFO - 
+Meilleur modèle: GBT
+[2026-01-23T11:34:17.253+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-01-23T11:34:17.269+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ml_pipeline, task_id=evaluate_models, execution_date=20260123T113244, start_date=20260123T113400, end_date=20260123T113417
+[2026-01-23T11:34:17.339+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T11:34:17.363+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

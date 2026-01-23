@@ -1,0 +1,43 @@
+[2026-01-23T14:16:35.100+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T14:06:20.552965+00:00 [queued]>
+[2026-01-23T14:16:35.115+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T14:06:20.552965+00:00 [queued]>
+[2026-01-23T14:16:35.116+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T14:16:35.136+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 14:06:20.552965+00:00
+[2026-01-23T14:16:35.148+0000] {standard_task_runner.py:60} INFO - Started process 793 to run task
+[2026-01-23T14:16:35.154+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'manual__2026-01-23T14:06:20.552965+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpn9p09rz3']
+[2026-01-23T14:16:35.159+0000] {standard_task_runner.py:88} INFO - Job 4: Subtask wait_for_etl
+[2026-01-23T14:16:35.248+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl manual__2026-01-23T14:06:20.552965+00:00 [running]> on host f73c8cf119da
+[2026-01-23T14:16:35.355+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T14:06:20.552965+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-23T14:06:20.552965+00:00'
+[2026-01-23T14:16:35.357+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T14:06:20.552965+00:00 ... 
+[2026-01-23T14:17:35.419+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T14:06:20.552965+00:00 ... 
+[2026-01-23T14:18:35.338+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T14:06:20.552965+00:00 ... 
+[2026-01-23T14:19:35.311+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T14:06:20.552965+00:00 ... 
+[2026-01-23T14:20:35.285+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T14:06:20.552965+00:00 ... 
+[2026-01-23T14:21:35.325+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T14:06:20.552965+00:00 ... 
+[2026-01-23T14:22:35.408+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T14:06:20.552965+00:00 ... 
+[2026-01-23T14:23:35.473+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T14:06:20.552965+00:00 ... 
+[2026-01-23T14:24:35.553+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T14:06:20.552965+00:00 ... 
+[2026-01-23T14:25:35.606+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T14:06:20.552965+00:00 ... 
+[2026-01-23T14:26:35.639+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T14:06:20.552965+00:00 ... 
+[2026-01-23T14:27:35.679+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T14:06:20.552965+00:00 ... 
+[2026-01-23T14:27:50.640+0000] {local_task_job_runner.py:121} ERROR - Received SIGTERM. Terminating subprocesses
+[2026-01-23T14:27:50.645+0000] {process_utils.py:131} INFO - Sending 15 to group 793. PIDs of all processes in the group: [793]
+[2026-01-23T14:27:50.646+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 793
+[2026-01-23T14:27:50.647+0000] {taskinstance.py:2450} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-01-23T14:27:50.662+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/sensors/external_task.py", line 334, in execute
+    super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/sensors/base.py", line 293, in execute
+    time.sleep(self._get_next_poke_interval(started_at, run_duration, try_number))
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2452, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+[2026-01-23T14:27:50.669+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=ml_pipeline, task_id=wait_for_etl, execution_date=20260123T140620, start_date=20260123T141635, end_date=20260123T142750
+[2026-01-23T14:27:50.688+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 4 for task wait_for_etl (Task received SIGTERM signal; 793)
+[2026-01-23T14:27:50.706+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=793, status='terminated', exitcode=1, started='14:16:34') (793) terminated with exit code 1
+[2026-01-23T14:27:50.707+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 143
+[2026-01-23T14:27:50.733+0000] {dagrun.py:822} ERROR - Failed to get task for ti <TaskInstance: ml_pipeline.train_random_forest manual__2026-01-23T14:06:20.552965+00:00 [None]>. Marking it as removed.
+[2026-01-23T14:27:50.739+0000] {dagrun.py:822} ERROR - Failed to get task for ti <TaskInstance: ml_pipeline.evaluate_random_forest manual__2026-01-23T14:06:20.552965+00:00 [None]>. Marking it as removed.
+[2026-01-23T14:27:50.753+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,31 @@
+[2026-01-23T13:50:34.749+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl scheduled__2026-01-23T13:30:00+00:00 [queued]>
+[2026-01-23T13:50:34.760+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline.wait_for_etl scheduled__2026-01-23T13:30:00+00:00 [queued]>
+[2026-01-23T13:50:34.761+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-23T13:50:34.775+0000] {taskinstance.py:2191} INFO - Executing <Task(ExternalTaskSensor): wait_for_etl> on 2026-01-23 13:30:00+00:00
+[2026-01-23T13:50:34.782+0000] {standard_task_runner.py:60} INFO - Started process 13749 to run task
+[2026-01-23T13:50:34.788+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline', 'wait_for_etl', 'scheduled__2026-01-23T13:30:00+00:00', '--job-id', '35', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline.py', '--cfg-path', '/tmp/tmpf_wd4_g5']
+[2026-01-23T13:50:34.791+0000] {standard_task_runner.py:88} INFO - Job 35: Subtask wait_for_etl
+[2026-01-23T13:50:34.849+0000] {task_command.py:423} INFO - Running <TaskInstance: ml_pipeline.wait_for_etl scheduled__2026-01-23T13:30:00+00:00 [running]> on host 0e061312f598
+[2026-01-23T13:50:34.943+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T13:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-23T13:30:00+00:00'
+[2026-01-23T13:50:34.945+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T13:30:00+00:00 ... 
+[2026-01-23T13:51:04.988+0000] {external_task.py:244} INFO - Poking for tasks ['save_silver_postgres'] in dag ETL_TASKFLOW on 2026-01-23T13:30:00+00:00 ... 
+[2026-01-23T13:51:28.776+0000] {local_task_job_runner.py:121} ERROR - Received SIGTERM. Terminating subprocesses
+[2026-01-23T13:51:28.783+0000] {process_utils.py:131} INFO - Sending 15 to group 13749. PIDs of all processes in the group: [13749]
+[2026-01-23T13:51:28.785+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 13749
+[2026-01-23T13:51:28.787+0000] {taskinstance.py:2450} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-01-23T13:51:28.809+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/sensors/external_task.py", line 334, in execute
+    super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/sensors/base.py", line 293, in execute
+    time.sleep(self._get_next_poke_interval(started_at, run_duration, try_number))
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2452, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+[2026-01-23T13:51:28.822+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=ml_pipeline, task_id=wait_for_etl, execution_date=20260123T133000, start_date=20260123T135034, end_date=20260123T135128
+[2026-01-23T13:51:28.844+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 35 for task wait_for_etl (Task received SIGTERM signal; 13749)
+[2026-01-23T13:51:28.886+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=13749, status='terminated', exitcode=1, started='13:50:34') (13749) terminated with exit code 1
+[2026-01-23T13:51:28.888+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 143
+[2026-01-23T13:51:28.932+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

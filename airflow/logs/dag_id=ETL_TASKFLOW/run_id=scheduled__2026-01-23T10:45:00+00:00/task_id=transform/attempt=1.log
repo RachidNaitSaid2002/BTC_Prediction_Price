@@ -1,0 +1,39 @@
+[2026-01-23T11:00:21.179+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_TASKFLOW.transform scheduled__2026-01-23T10:45:00+00:00 [queued]>
+[2026-01-23T11:00:21.190+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_TASKFLOW.transform scheduled__2026-01-23T10:45:00+00:00 [queued]>
+[2026-01-23T11:00:21.191+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2026-01-23T11:00:21.208+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonDecoratedOperator): transform> on 2026-01-23 10:45:00+00:00
+[2026-01-23T11:00:21.218+0000] {standard_task_runner.py:60} INFO - Started process 4036 to run task
+[2026-01-23T11:00:21.221+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ETL_TASKFLOW', 'transform', 'scheduled__2026-01-23T10:45:00+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/ETL.py', '--cfg-path', '/tmp/tmpm_qokhz2']
+[2026-01-23T11:00:21.224+0000] {standard_task_runner.py:88} INFO - Job 13: Subtask transform
+[2026-01-23T11:00:21.284+0000] {task_command.py:423} INFO - Running <TaskInstance: ETL_TASKFLOW.transform scheduled__2026-01-23T10:45:00+00:00 [running]> on host 0d0f1cb08391
+[2026-01-23T11:00:21.411+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL_TASKFLOW' AIRFLOW_CTX_TASK_ID='transform' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T10:45:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-23T10:45:00+00:00'
+[2026-01-23T11:00:45.070+0000] {python.py:201} INFO - Done. Returned value was: /opt/***/data/Silver/
+[2026-01-23T11:00:45.116+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ETL_TASKFLOW, task_id=transform, execution_date=20260123T104500, start_date=20260123T110021, end_date=20260123T110045
+[2026-01-23T11:00:45.182+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T11:00:45.214+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T11:04:28.878+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_TASKFLOW.transform scheduled__2026-01-23T10:45:00+00:00 [queued]>
+[2026-01-23T11:04:28.891+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_TASKFLOW.transform scheduled__2026-01-23T10:45:00+00:00 [queued]>
+[2026-01-23T11:04:28.892+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2026-01-23T11:04:28.910+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonDecoratedOperator): transform> on 2026-01-23 10:45:00+00:00
+[2026-01-23T11:04:28.916+0000] {standard_task_runner.py:60} INFO - Started process 961 to run task
+[2026-01-23T11:04:28.923+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ETL_TASKFLOW', 'transform', 'scheduled__2026-01-23T10:45:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/ETL.py', '--cfg-path', '/tmp/tmp_6z9k61y']
+[2026-01-23T11:04:28.926+0000] {standard_task_runner.py:88} INFO - Job 4: Subtask transform
+[2026-01-23T11:04:28.994+0000] {task_command.py:423} INFO - Running <TaskInstance: ETL_TASKFLOW.transform scheduled__2026-01-23T10:45:00+00:00 [running]> on host 5d61504e82da
+[2026-01-23T11:04:29.117+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL_TASKFLOW' AIRFLOW_CTX_TASK_ID='transform' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T10:45:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-23T10:45:00+00:00'
+[2026-01-23T11:04:54.636+0000] {python.py:201} INFO - Done. Returned value was: /opt/***/data/Silver/
+[2026-01-23T11:04:54.671+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ETL_TASKFLOW, task_id=transform, execution_date=20260123T104500, start_date=20260123T110428, end_date=20260123T110454
+[2026-01-23T11:04:54.717+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T11:04:54.751+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-01-23T11:15:10.497+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_TASKFLOW.transform scheduled__2026-01-23T10:45:00+00:00 [queued]>
+[2026-01-23T11:15:10.509+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_TASKFLOW.transform scheduled__2026-01-23T10:45:00+00:00 [queued]>
+[2026-01-23T11:15:10.510+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2026-01-23T11:15:10.526+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonDecoratedOperator): transform> on 2026-01-23 10:45:00+00:00
+[2026-01-23T11:15:10.533+0000] {standard_task_runner.py:60} INFO - Started process 1214 to run task
+[2026-01-23T11:15:10.538+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ETL_TASKFLOW', 'transform', 'scheduled__2026-01-23T10:45:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/ETL.py', '--cfg-path', '/tmp/tmpfitrmu4w']
+[2026-01-23T11:15:10.542+0000] {standard_task_runner.py:88} INFO - Job 5: Subtask transform
+[2026-01-23T11:15:10.603+0000] {task_command.py:423} INFO - Running <TaskInstance: ETL_TASKFLOW.transform scheduled__2026-01-23T10:45:00+00:00 [running]> on host 0e061312f598
+[2026-01-23T11:15:10.726+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ETL_TASKFLOW' AIRFLOW_CTX_TASK_ID='transform' AIRFLOW_CTX_EXECUTION_DATE='2026-01-23T10:45:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-23T10:45:00+00:00'
+[2026-01-23T11:15:34.827+0000] {python.py:201} INFO - Done. Returned value was: /opt/***/data/Silver/
+[2026-01-23T11:15:34.878+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ETL_TASKFLOW, task_id=transform, execution_date=20260123T104500, start_date=20260123T111510, end_date=20260123T111534
+[2026-01-23T11:15:34.943+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-23T11:15:34.978+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
