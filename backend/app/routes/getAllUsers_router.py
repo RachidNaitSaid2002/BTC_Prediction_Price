@@ -7,7 +7,6 @@ from models.user_model import User
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
-
 @router.get("/me")
 def get_me(db: Session = Depends(get_db)):
     """Récupère tous les utilisateurs de la base de données"""

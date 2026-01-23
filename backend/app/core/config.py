@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     DB_NAME: str 
     DB_USER: str 
     DB_PASSWORD: str 
+
+    DATABASE_URL : str
     
     # Chemin correct pour le modèle dans le conteneur
     MODEL_PATH: str = "/app/ml/Machine Learning/model/bitcoin_pipeline_model"

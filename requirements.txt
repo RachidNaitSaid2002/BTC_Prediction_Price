@@ -1,39 +1,20 @@
-# Airflow DB
+# Common (used by both)
 psycopg2-binary
-
-# Spark
-pyspark
-pyarrow
-
-# Data Science
-pandas
-numpy
-scikit-learn
-matplotlib
-tensorflow
-
-# Web Framework
-fastapi
-uvicorn
-httpx
-
-# Database
 sqlalchemy
-psycopg2
-
-# Configuration
+requests
 python-dotenv
 pydantic
 pydantic-settings
 
-# Security
-passlib
+# API only
+pyspark==3.5.1
+pyarrow
+pandas
+numpy
+scikit-learn
+matplotlib
+fastapi
+uvicorn
+python-jose[cryptography]
+passlib[bcrypt]
 argon2_cffi
-python-jose
-
-# Testing
-pytest
-requests
-
-# XGBoost
-sparkxgb
