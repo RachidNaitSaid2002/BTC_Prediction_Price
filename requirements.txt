@@ -3,26 +3,37 @@ psycopg2-binary
 
 # Spark
 pyspark
+pyarrow
+
+# Data Science
 pandas
 numpy
 scikit-learn
-pyarrow
-pandas
+matplotlib
+tensorflow
 
-# Web Framework and others
-dotenv
-sqlalchemy
-pydantic
+# Web Framework
 fastapi
 uvicorn
+httpx
+
+# Database
+sqlalchemy
+psycopg2
+
+# Configuration
+python-dotenv
+pydantic
+pydantic-settings
+
+# Security
 passlib
 argon2_cffi
 python-jose
+
+# Testing
 pytest
 requests
 
-matplotlib
-numpy
-xgboost
-tensorflow
+# XGBoost
 sparkxgb
