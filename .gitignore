@@ -3,6 +3,5 @@
 .history/
 .ipynb_checkpoints/
 __pycache__/
-
-
-.env
+/airflow/logs/
+/airflow/data/
