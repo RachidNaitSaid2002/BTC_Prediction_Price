@@ -130,55 +130,60 @@ docker-compose ps
 ## Structure du Projet
 ```
 BTC_PREDICTION_PRICE/
-├── .history/                       # Historique des fichiers (VS Code)
-├── airflow/                        # Orchestration des flux de données
-│   ├── dags/                       # Workflows Python
-│   │   ├── ETL.py                  # Pipeline d'extraction et de chargement
-│   │   └── ml_pipeline.py          # Pipeline de Machine Learning
-│   ├── data/                       # Stockage des données par étapes
-│   │   ├── Bronze/                 # Données brutes
-│   │   ├── Silver/                 # Données transformées
-│   │   ├── models/                 # Stockage des modèles entraînés
-│   │   └── temp/                   # Fichiers temporaires de calcul
-│   ├── logs/                       # Journaux d'exécution d'Airflow
-│   ├── plugins/utils/              # Utilitaires pour les plugins Airflow
-│   │   └── fetch_api.py            # Script de récupération des données API
-│   ├── utils/                      # Scripts d'aide (Dockerfile, init_airflow.sh)
-│   └── jars/                       # Librairies Java tierces
-├── backend/                        # Partie Serveur / API
-│   └── app/                        # Application principale
-│       ├── auth/                   # Sécurité et Jetons
-│       │   └── token_auth.py       # Gestion des tokens JWT
-│       ├── core/                   # Configuration de base
-│       │   └── config.py           # Variables globales
-│       ├── db/                     # Connexion base de données
-│       │   └── db_connection.py    # Logique de connexion SQL
-│       ├── routes/                 # Endpoints de l'API
-│       │   ├── prediction_router.py# Route pour les prévisions de prix
-│       │   └── register_router.py  # Route pour l'inscription utilisateur
-│       ├── schemas/                # Modèles de validation Pydantic
-│       │   ├── LoginRequest_schema.py      # Validation connexion
-│       │   ├── PredictionRequest_schema.py # Validation requête prédiction
-│       │   └── Token_schema.py             # Structure du token
-│       ├── services/               # Logique métier
-│       │   └── prediction_service.py # Traitement des prédictions
-│       ├── main.py                 # Entrée de l'application
-│       └── Dockerfile              # Image Docker du backend
-├── ml/                             # Recherche et Développement ML
-│   ├── Data/                       # Datasets locaux (Bronze/Silver)
-│   ├── Data_Engineer/              # Ingénierie des données
-│   │   ├── Api_integration/        # Intégration des sources externes
-│   │   └── Notebooks/              # Travaux de data engineering
-│   └── Machine Learning/           # Modélisation
-│       ├── model/                  # Fichiers de modèles sérialisés
-│       └── notebooks/              # Expérimentations (main.ipynb)
-├── venv/                           # Environnement virtuel Python
-├── .env.example                    # Modèle de configuration
-├── .gitignore                      # Fichiers à ignorer par Git
-├── docker-compose.yml              # Orchestration totale du projet
-├── init.sql                        # Initialisation de la base de données
-├── README.md                       # Documentation
-└── requirements.txt                # Dépendances Python
+├── airflow/                        # Système d'orchestration des tâches (DAGs)
+│   ├── dags/                       # Dossier contenant les scripts de workflows
+│   │   ├── ETL.py                  # Script d'Extraction, Transformation et Chargement des données
+│   │   └── ml_pipeline.py          # Automatisation de l'entraînement et du déploiement ML
+│   ├── data/                       # Stockage local des données gérées par Airflow
+│   │   ├── Bronze/                 # Zone de stockage des données brutes (raw data)
+│   │   ├── models/                 # Versions archivées des modèles entraînés
+│   │   ├── Silver/                 # Zone de stockage des données nettoyées et filtrées
+│   │   └── temp/                   # Fichiers de calcul ou de stockage temporaires
+│   ├── jars/                       # Librairies Java (souvent utilisées pour Spark)
+│   ├── logs/                       # Historique des erreurs et succès des tâches Airflow
+│   └── plugins/utils/              # Extensions personnalisées pour Airflow
+│       └── fetch_api.py            # Utilitaire pour récupérer les données depuis des APIs externes
+├── backend/                        # Cœur de l'application API (FastAPI/Flask)
+│   └── app/                        # Code source de la logique serveur
+│       ├── auth/                   # Gestion de la sécurité et des accès
+│       │   └── token_auth.py       # Logique de création et validation des jetons JWT
+│       ├── core/                   # Paramètres globaux du système
+│       │   └── config.py           # Définition des constantes et variables système
+│       ├── db/                     # Couche d'accès aux données
+│       │   └── db_connection.py    # Configuration de la connexion à la base de données SQL
+│       ├── models/                 # Définition des tables de la base de données (ORM)
+│       │   ├── prediction_model.py # Structure de la table pour stocker les prédictions
+│       │   └── user_model.py       # Structure de la table pour les profils utilisateurs
+│       ├── routes/                 # Définition des points d'accès (endpoints) de l'API
+│       │   ├── analyis_daily_volume_router.py # API pour les statistiques de volume quotidien
+│       │   ├── analyis_router.py   # API pour les analyses générales
+│       │   ├── getAllUsers_router.py # API pour l'administration des utilisateurs
+│       │   ├── login_router.py      # API pour l'authentification des utilisateurs
+│       │   ├── prediction_router.py # API principale pour demander des prédictions BTC
+│       │   └── register_router.py   # API pour la création de nouveaux comptes
+│       ├── schemas/                # Validation des données entrantes/sortantes (Pydantic)
+│       │   ├── LoginRequest_schema.py      # Format requis pour la connexion
+│       │   ├── PredictionRequest_schema.py # Format requis pour une prédiction
+│       │   └── Token_schema.py             # Format de réponse pour les jetons de sécurité
+│       ├── services/               # Logique métier (fait le lien entre API et ML)
+│       │   └── prediction_service.py # Traitement et calcul des prédictions
+│       ├── main.py                 # Point d'entrée pour lancer le serveur backend
+│       └── Dockerfile              # Instructions pour créer l'image conteneur du backend
+├── ml/                             # Partie Science des données et recherche
+│   ├── Data/                       # Datasets utilisés pour l'entraînement local
+│   ├── Data_Engineer/              # Scripts de préparation de données (hors Airflow)
+│   │   ├── Api_integration/        # Tests d'intégration de nouvelles sources de données
+│   │   └── Notebooks/              # Notebooks dédiés au nettoyage de données
+│   └── Machine Learning/           # Développement des algorithmes prédictifs
+│       ├── model/                  # Stockage des fichiers de modèles sérialisés (.pkl, .h5)
+│       └── notebooks/              # Expérimentations et visualisation des résultats
+│           └── main.ipynb          # Notebook principal d'entraînement du modèle BTC
+├── .env.example                    # Modèle pour les variables d'environnement (clé API, DB pass)
+├── .gitignore                      # Liste des fichiers à ne pas envoyer sur GitHub (ex: venv, .env)
+├── docker-compose.yml              # Fichier pour lancer tous les services (DB, Airflow, API) simultanément
+├── init.sql                        # Script de création automatique des tables SQL au démarrage
+├── README.md                       # Documentation expliquant comment installer et utiliser le projet
+└── requirements.txt                # Liste de toutes les bibliothèques Python nécessaires
 ```
 
 ## Pipelines
