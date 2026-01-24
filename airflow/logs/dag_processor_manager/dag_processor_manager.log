@@ -42362,3 +42362,13 @@ File Path                         PID    Runtime      # DAGs    # Errors  Last R
 /opt/airflow/dags/ETL.py                                   1           0  0.25s           2026-01-24T00:13:30
 /opt/airflow/dags/ml_pipeline.py                           1           0  0.44s           2026-01-24T00:13:42
 ================================================================================
+[2026-01-24T00:14:26.846+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+--------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ETL.py                                   1           0  0.23s           2026-01-24T00:14:00
+/opt/airflow/dags/ml_pipeline.py                           1           0  0.44s           2026-01-24T00:14:13
+================================================================================
+[2026-01-24T00:14:37.628+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
