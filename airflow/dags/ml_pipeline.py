@@ -75,7 +75,7 @@ def load_data(**context):
 
 
 def prepare_ml_data(df, feature_names, target_col, train_ratio):
-    """Prépare les données pour le ML"""
+    """Prépare les données pour le ML avec protection anti-fuite temporelle"""
     print("=" * 50)
     print("Préparation des données")
     print("=" * 50)
@@ -106,33 +106,56 @@ def prepare_ml_data(df, feature_names, target_col, train_ratio):
     )
     df = assembler.transform(df)
     
-    # Filtrer les nulls dans la target (au cas où)
+    # Filtrer les nulls dans la target
     df = df.filter(col(target_col).isNotNull())
     
-    # Index temporel STABLE avec unique_id comme secondary sort
+    # Calculer le total AVANT le split
+    total_rows = df.count()
+    print(f"\nTotal rows après nettoyage: {total_rows}")
+    
+    if total_rows < 120:  # Minimum raisonnable pour train=100, test=20
+        raise ValueError(f"Dataset trop petit: {total_rows} lignes")
+    
+    # Créer un index temporel STABLE
     window = Window.orderBy("open_time", "unique_id")
     df = df.withColumn("time_index", row_number().over(window))
     
-    # Split temporel
-    total_rows = df.count()
+    # Calculer le point de split
     split_point = int(total_rows * train_ratio)
+    print(f"Split point (index): {split_point}")
     
-    print(f"\nTotal rows après nettoyage: {total_rows}")
-    print(f"Split point: {split_point}")
+    # Identifier le timestamp de coupure
+    split_row = df.filter(col("time_index") == split_point).select("open_time").first()
     
-    df_train_raw = df.filter(col("time_index") <= split_point)
-    df_test_raw = df.filter(col("time_index") > split_point)
+    if split_row is None:
+        raise ValueError(f"Impossible de trouver la ligne au split_point {split_point}")
+    
+    split_timestamp = split_row[0]
+    print(f"Split timestamp: {split_timestamp}")
+    
+    # STRATÉGIE ANTI-FUITE : Mettre TOUS les enregistrements du timestamp 
+    # de coupure dans le test set pour garantir aucun chevauchement
+    df_train_raw = df.filter(col("open_time") < split_timestamp)
+    df_test_raw = df.filter(col("open_time") >= split_timestamp)
     
     train_count = df_train_raw.count()
     test_count = df_test_raw.count()
+    actual_ratio = train_count / total_rows if total_rows > 0 else 0
     
-    print(f"\nSplit: {int(train_ratio*100)}% train / {int((1-train_ratio)*100)}% test")
-    print(f"  Train: {train_count} lignes")
-    print(f"  Test:  {test_count} lignes")
+    print(f"\nSplit réel: {actual_ratio:.1%} train / {(1-actual_ratio):.1%} test")
+    print(f"  Train: {train_count} lignes (< {split_timestamp})")
+    print(f"  Test:  {test_count} lignes (>= {split_timestamp})")
     
-    # Vérification des comptes
+    # Vérifier qu'on a assez de données
+    if train_count < 100:
+        raise ValueError(f"Train set trop petit: {train_count} lignes")
+    if test_count < 20:
+        raise ValueError(f"Test set trop petit: {test_count} lignes")
+    
+    # Vérifier qu'on n'a pas perdu de données
     if train_count + test_count != total_rows:
-        print(f"  ⚠ WARNING: {total_rows - train_count - test_count} lignes perdues!")
+        lost = total_rows - train_count - test_count
+        print(f"    WARNING: {lost} lignes perdues dans le split!")
     
     # Normalisation (fit sur train uniquement)
     scaler = StandardScaler(
@@ -150,33 +173,22 @@ def prepare_ml_data(df, feature_names, target_col, train_ratio):
     train_max_time = df_train.agg(spark_max("open_time")).collect()[0][0]
     test_min_time = df_test.agg(spark_min("open_time")).collect()[0][0]
     
-    train_max_idx = df_train.agg(spark_max("time_index")).collect()[0][0]
-    test_min_idx = df_test.agg(spark_min("time_index")).collect()[0][0]
+    print(f"\n✓ Vérification temporelle:")
+    print(f"  Train max: {train_max_time}")
+    print(f"  Test min:  {test_min_time}")
     
-    print(f"\n  DEBUG - Timestamps:")
-    print(f"    Train max: {train_max_time}")
-    print(f"    Test min:  {test_min_time}")
-    print(f"  DEBUG - Indices:")
-    print(f"    Train max index: {train_max_idx}")
-    print(f"    Test min index:  {test_min_idx}")
+    # Calculer le gap
+    if train_max_time and test_min_time:
+        gap = test_min_time - train_max_time
+        print(f"  Gap:       {gap}")
     
-    # Vérification stricte
+    # Cette condition devrait toujours être vraie maintenant
     if train_max_time >= test_min_time:
-        print(f"\n✗ FUITE TEMPORELLE DÉTECTÉE!")
-        print(f"  Le timestamp max du train ({train_max_time}) est >= au timestamp min du test ({test_min_time})")
-        
-        # Diagnostic supplémentaire
-        overlap_count = df_train.join(
-            df_test.select("open_time").distinct(),
-            "open_time",
-            "inner"
-        ).count()
-        
-        print(f"  Nombre de timestamps en commun: {overlap_count}")
-        raise ValueError("✗ FUITE TEMPORELLE DÉTECTÉE!")
+        raise ValueError(
+            f"✗ FUITE TEMPORELLE : train_max ({train_max_time}) >= test_min ({test_min_time})"
+        )
     
-    print(f"\n✓ Pas de fuite temporelle")
-    print(f"  Gap temporel: {test_min_time - train_max_time}")
+    print("✓ Pas de fuite temporelle détectée")
     print("=" * 50)
     
     return df_train, df_test, scaler_model
